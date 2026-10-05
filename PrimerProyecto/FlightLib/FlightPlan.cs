@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace FlightLib
 {
     public class FlightPlan
-        // para definir una clase, SIEMPRE se pone en public para poder EDITARLA DESDE FUERA (quien quiera modificar nuestro código)
+    // para definir una clase, SIEMPRE se pone en public para poder EDITARLA DESDE FUERA (quien quiera modificar nuestro código)
 
     {
         // ATRIBUTOS (variables) - estas siempre son privadas, sin poner delante nada para no poder ser modificadas
 
         string id; // identificador
+        Position initialPosition; // posición inicial
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
         double velocidad;
@@ -28,6 +29,7 @@ namespace FlightLib
             // delante de los atributos no se pone nada, LOS ATRIBUTOS YA SON PRIVADOS
 
             this.id = id;
+            this.initialPosition = new Position(cpx, cpy);
             this.currentPosition = new Position(cpx, cpy);
             this.finalPosition = new Position(fpx, fpy);
             this.velocidad = velocidad;
@@ -36,30 +38,38 @@ namespace FlightLib
         // METODOS (funciones)
         // son los métodos que van a trabajar sobre los atributos de la clase FlightPlan
 
+        // GETTERS
+        public string GetId()
+        { return id; }
+
+        public Position GetCurrentPosition()
+        { return currentPosition; }
+
+        public Position GetFinalPosition()
+        { return finalPosition; }
+
+        public double GetVelocidad()
+        { return velocidad; }
+
+
+        // SETTERS
+
+        public void SetId(string id)
+        { this.id = id; }
+
+        public void SetCurrentPosition(Position currentPosition)
+        { this.currentPosition = currentPosition; }
+
+        public void SetFinalPosition(Position finalPosition)
+        { this.finalPosition = finalPosition; }
 
         public void SetVelocidad(double velocidad)
         // Setter del atributo velocidad
         // es de tipo void porque no devuelve nada
         { this.velocidad = velocidad; }
 
-        public Position GetCurrentPosition()
-        {
-            return currentPosition;
-        }
-        public string GetId()
-        {
-            return id;
-        }
+        ///////////////////////////////////////////////////
 
-        public double GetVelocidad()
-        {
-            return velocidad;
-        }
-
-        public Position GetFinalPosition()
-        {
-            return finalPosition;
-        }
         public void Mover(double tiempo)
         {
             Mover(tiempo, double.MaxValue, double.MaxValue);
@@ -100,10 +110,12 @@ namespace FlightLib
         }
 
         // !!HACER UN METODO PARA QUE DIGA SI UN VUELO LLEGA A SU DESTINO O NO (COMPARANDO POSICIONES)
-        public bool EstaDestino()
-        { 
+        public bool HasArrived()
+        {
             bool resultado = false;
-            if (currentPosition == finalPosition)
+
+            if (currentPosition.Distancia(finalPosition) == 0)
+                // (currentPosition == finalPosition) --> yo lo tenía así, quiero preguntar si valdría igual
                 resultado = true;
             return resultado;
         }
@@ -118,6 +130,18 @@ namespace FlightLib
                 conflicto = true;
             return conflicto;
         }
+
+        public void Restart()
+        { currentPosition = initialPosition; }
+
+        public double Distance(FlightPlan plan)
+        {
+            double two_plans_distance = this.currentPosition.Distancia(plan.currentPosition);
+            // este método lo que hace es coger la currentposition y hacer la distancia respecto a otro plan de vuelo "plan" que será un parámetro que le daremos
+            return two_plans_distance;
+        }
+
+
         public void EscribeConsola()
         // escribe en consola los datos del plan de vuelo
         {
@@ -127,7 +151,7 @@ namespace FlightLib
             // !!buscar como escribir datos reales con solo 2 decimales (F2, fload de 2 decimales)
             Console.WriteLine("Velocidad: {0:F2}", velocidad);
             Console.WriteLine("Posición actual: ({0:F2},{1:F2})", currentPosition.GetX(), currentPosition.GetY());
-            if (this.EstaDestino())
+            if (this.HasArrived())
                 // se encarga de avisar si hemos llegado a nuestro destino
                 Console.WriteLine("Hemos llegado a nuestro destino");
             Console.WriteLine("******************************");

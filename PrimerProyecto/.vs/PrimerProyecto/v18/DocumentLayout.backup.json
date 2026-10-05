@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\jiayi\\OneDrive\\\u5927\u5B66\\3r Quatri\\Informatica II\\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\\PrimerProyecto\\",
+  "WorkspaceRootPath": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\jiayi\\onedrive\\\u5927\u5B66\\3r quatri\\informatica ii\\proyecto-inform-tica-2---flightplans\\primerproyecto\\simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|c:\\users\\paula\\onedrive\\escritorio\\info2\\proyecto-info\\proyecto_info2\\primerproyecto\\flightlib\\flightplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\paula\\onedrive\\escritorio\\info2\\proyecto-info\\proyecto_info2\\primerproyecto\\simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -19,28 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FlightPlan.cs",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlan.cs",
+              "RelativeDocumentMoniker": "FlightLib\\FlightPlan.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlan.cs",
+              "RelativeToolTip": "FlightLib\\FlightPlan.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAQwJkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T14:35:57.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Principal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\jiayi\\OneDrive\\\u5927\u5B66\\3r Quatri\\Informatica II\\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
               "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\Principal.cs",
-              "ToolTip": "C:\\Users\\jiayi\\OneDrive\\\u5927\u5B66\\3r Quatri\\Informatica II\\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
               "RelativeToolTip": "SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-02T13:49:22.463Z",
               "EditorCaption": " [Dise\u00F1o]"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 85,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }
