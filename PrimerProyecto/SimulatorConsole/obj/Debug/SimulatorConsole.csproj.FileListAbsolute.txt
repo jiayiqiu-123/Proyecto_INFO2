@@ -1,0 +1,20 @@
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\bin\Debug\SimulatorConsole.exe.config
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\bin\Debug\SimulatorConsole.exe
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\bin\Debug\SimulatorConsole.pdb
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\bin\Debug\FlightLib.dll
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\bin\Debug\FlightLib.pdb
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.AssemblyReference.cache
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.CoreCompileInputs.cache
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\obj\Debug\Simulato.840E03AB.Up2Date
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.exe
+C:\Users\paula\Downloads\1-PrimerProyecto (1)\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.pdb
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\bin\Debug\SimulatorConsole.exe.config
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\bin\Debug\SimulatorConsole.exe
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\bin\Debug\SimulatorConsole.pdb
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\bin\Debug\FlightLib.dll
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\bin\Debug\FlightLib.pdb
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.AssemblyReference.cache
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.csproj.CoreCompileInputs.cache
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\obj\Debug\Simulato.840E03AB.Up2Date
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.exe
+C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\PrimerProyecto\SimulatorConsole\obj\Debug\SimulatorConsole.pdb

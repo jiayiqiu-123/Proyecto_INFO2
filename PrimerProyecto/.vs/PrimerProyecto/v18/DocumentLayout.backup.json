@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jiayi\\OneDrive\\\u5927\u5B66\\3r Quatri\\Informatica II\\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\\PrimerProyecto\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\jiayi\\onedrive\\\u5927\u5B66\\3r quatri\\informatica ii\\proyecto-inform-tica-2---flightplans\\primerproyecto\\simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 85,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Principal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\jiayi\\OneDrive\\\u5927\u5B66\\3r Quatri\\Informatica II\\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\Principal.cs",
+              "ToolTip": "C:\\Users\\jiayi\\OneDrive\\\u5927\u5B66\\3r Quatri\\Informatica II\\PROYECTO-INFORM-TICA-2---FLIGHTPLANS\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T13:49:22.463Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 85,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
