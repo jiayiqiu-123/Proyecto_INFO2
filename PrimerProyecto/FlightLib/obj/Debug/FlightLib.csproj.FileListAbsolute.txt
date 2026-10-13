@@ -16,3 +16,9 @@ C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProy
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.dll
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\FlightLib\bin\Debug\FlightLib.dll
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\FlightLib\bin\Debug\FlightLib.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.dll
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\FlightLib\obj\Debug\FlightLib.pdb

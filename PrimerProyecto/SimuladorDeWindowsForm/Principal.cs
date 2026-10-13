@@ -16,7 +16,7 @@ namespace SimuladorDeWindowsForm
         // Variables donde se guardan los datos introducidos
         FlightPlan vuelo1;
         FlightPlan vuelo2;
-        double distanciaSeguridad;
+        float distanciaSeguridad;
         double tiempoCiclo;
 
 
@@ -72,6 +72,7 @@ namespace SimuladorDeWindowsForm
             }
 
             FormSimulacion formulario = new FormSimulacion(vuelo1, vuelo2, tiempoCiclo);
+            formulario.SetDSeguridad(distanciaSeguridad);
             formulario.ShowDialog();
         }
     }

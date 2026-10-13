@@ -47,3 +47,20 @@ C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProy
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\Gesti_nD.22B21869.Up2Date
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.exe
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\GestiónDeVuelos.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.FormInformacionAvion.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.FormParametros.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.FormPlanesDeVuelo.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.FormSimulacion.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.Principal.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.Properties.Resources.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\GestiónDeVuelos.csproj.GenerateResource.cache
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\GestiónDeVuelos.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.exe
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\SimuladorDeWindowsForm.exe.config
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\SimuladorDeWindowsForm.exe
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\SimuladorDeWindowsForm.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\FlightLib.dll
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\FlightLib.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\Gesti_nD.22B21869.Up2Date
