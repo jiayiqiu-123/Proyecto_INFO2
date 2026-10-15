@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelEspacioAereo = new System.Windows.Forms.Panel();
             this.btnMover = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSimulacionAutomatica = new System.Windows.Forms.Button();
+            this.timerSimulacion = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // panelEspacioAereo
@@ -40,7 +43,7 @@
             this.panelEspacioAereo.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panelEspacioAereo.Location = new System.Drawing.Point(331, 70);
             this.panelEspacioAereo.Name = "panelEspacioAereo";
-            this.panelEspacioAereo.Size = new System.Drawing.Size(600, 400);
+            this.panelEspacioAereo.Size = new System.Drawing.Size(914, 628);
             this.panelEspacioAereo.TabIndex = 1;
             this.panelEspacioAereo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -66,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(272, 452);
+            this.label2.Location = new System.Drawing.Point(245, 680);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 3;
@@ -75,18 +78,34 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(896, 49);
+            this.label4.Location = new System.Drawing.Point(1165, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 18);
             this.label4.TabIndex = 5;
             this.label4.Text = "(600, 0)";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
+            // btnSimulacionAutomatica
+            // 
+            this.btnSimulacionAutomatica.Location = new System.Drawing.Point(74, 270);
+            this.btnSimulacionAutomatica.Name = "btnSimulacionAutomatica";
+            this.btnSimulacionAutomatica.Size = new System.Drawing.Size(177, 85);
+            this.btnSimulacionAutomatica.TabIndex = 6;
+            this.btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+            this.btnSimulacionAutomatica.UseVisualStyleBackColor = true;
+            this.btnSimulacionAutomatica.Click += new System.EventHandler(this.btnIniciarAutomatico_Click);
+            // 
+            // timerSimulacion
+            // 
+            this.timerSimulacion.Interval = 1000;
+            this.timerSimulacion.Tick += new System.EventHandler(this.timerSimulacion_Tick);
+            // 
             // FormSimulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 569);
+            this.ClientSize = new System.Drawing.Size(1388, 781);
+            this.Controls.Add(this.btnSimulacionAutomatica);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -107,5 +126,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSimulacionAutomatica;
+        private System.Windows.Forms.Timer timerSimulacion;
     }
 }

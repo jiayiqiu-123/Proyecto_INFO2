@@ -109,12 +109,20 @@ namespace SimuladorDeWindowsForm
 
         }
 
-        private void btnMover_Click(object sender, EventArgs e)
+        private void MoverAviones()
         {
-            vuelo1.Mover(tiempoCiclo, panelEspacioAereo.Width - 12, panelEspacioAereo.Height - 12);
-            vuelo2.Mover(tiempoCiclo, panelEspacioAereo.Width - 12, panelEspacioAereo.Height - 12);
+            if (vuelo1 == null || vuelo2 == null)
+                return;
+
+            vuelo1.Mover(tiempoCiclo, panelEspacioAereo.ClientSize.Width - 12, panelEspacioAereo.ClientSize.Height - 12);
+            vuelo2.Mover(tiempoCiclo, panelEspacioAereo.ClientSize.Width - 12, panelEspacioAereo.ClientSize.Height - 12);
 
             panelEspacioAereo.Invalidate();
+        }
+
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+            MoverAviones();
         }
         private void panelEspacioAereo_MouseClick(object sender, MouseEventArgs e)
         {
@@ -147,6 +155,29 @@ namespace SimuladorDeWindowsForm
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnIniciarAutomatico_Click(object sender, EventArgs e)
+        {
+            if (timerSimulacion.Enabled == false)
+            {
+                timerSimulacion.Start();
+                btnSimulacionAutomatica.Text = "Detener simulación automática";
+                btnMover.Enabled = false;
+            }
+            else
+            {
+                timerSimulacion.Stop();
+                btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+                btnMover.Enabled = true;
+            }
+
+
+    }
+
+        private void timerSimulacion_Tick(object sender, EventArgs e)
+        {
+            MoverAviones();
         }
     }
 }
