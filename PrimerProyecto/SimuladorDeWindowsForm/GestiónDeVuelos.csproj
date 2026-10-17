@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormDistancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDistancia.Designer.cs">
+      <DependentUpon>FormDistancia.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormInformacionAvion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     <Compile Include="FormSimulacion.Designer.cs">
       <DependentUpon>FormSimulacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTablaVuelos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTablaVuelos.Designer.cs">
+      <DependentUpon>FormTablaVuelos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +90,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormDistancia.resx">
+      <DependentUpon>FormDistancia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormInformacionAvion.resx">
       <DependentUpon>FormInformacionAvion.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSimulacion.resx">
       <DependentUpon>FormSimulacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTablaVuelos.resx">
+      <DependentUpon>FormTablaVuelos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>

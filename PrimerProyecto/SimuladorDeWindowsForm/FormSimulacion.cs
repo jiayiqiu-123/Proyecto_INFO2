@@ -179,5 +179,14 @@ namespace SimuladorDeWindowsForm
         {
             MoverAviones();
         }
+
+        private void buttonVerTablaVuelos_Click(object sender, EventArgs e)
+        {
+            FormTablaVuelos fTabla = new FormTablaVuelos();
+            // Le pasamos los dos vuelos que tienes en la simulación
+            fTabla.p1 = this.vuelo1;
+            fTabla.p2 = this.vuelo2;
+            fTabla.ShowDialog();
+        }
     }
 }

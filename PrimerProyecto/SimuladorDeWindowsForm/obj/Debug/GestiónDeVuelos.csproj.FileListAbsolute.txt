@@ -81,3 +81,5 @@ C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\Proyecto_INFO2\PrimerPro
 C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\Gesti_nD.22B21869.Up2Date
 C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.exe
 C:\Users\jiayi\OneDrive\大学\3r Quatri\Informatica II\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.pdb
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.FormDistancia.resources
+C:\Users\Usuario\Desktop\PROYECTO INFO 2\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.FormTablaVuelos.resources
