@@ -13,10 +13,12 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormSimulacion : Form
     {
-        private FlightPlan vuelo1;
-        private FlightPlan vuelo2;
+        FlightPlan vuelo1;
+        FlightPlan vuelo2;
         private double tiempoCiclo;
         float dSeguridad;
+        bool enConflicto;
+        // esto me servirá como variable para el conflicto, en el buttonPredicción
 
         public FormSimulacion()
         {
@@ -118,6 +120,22 @@ namespace SimuladorDeWindowsForm
             vuelo2.Mover(tiempoCiclo, panelEspacioAereo.ClientSize.Width - 12, panelEspacioAereo.ClientSize.Height - 12);
 
             panelEspacioAereo.Invalidate();
+
+            // añadimos para poder detectar conflictos y usarlo en el buttonPredicción
+            bool hayConflicto = vuelo1.Conflicto(vuelo2, dSeguridad);
+            // creamos la variable "hayConflicto" en booleano, su valor lo decidirá el método Conflicto que ya tenemos (midiendo dist1 y dist2)
+            // si dist<dseguridad, hay conflicto, si no, no hay conflicto
+            if (hayConflicto == true && enConflicto == false)
+                // esto para asegurarnos de que antes no había conflicto
+            {
+                enConflicto = true;
+                MessageBox.Show("¡CUIDADO, los vuelos están a una distancia inferior a la de seguridad!");
+            }
+            if (hayConflicto == false)
+            {
+                enConflicto = false;
+            }
+            // al ponerlo en 2 diferentes, cada vez que se mueva irán comprobando verdad? !
         }
 
         private void btnMover_Click(object sender, EventArgs e)
@@ -187,6 +205,49 @@ namespace SimuladorDeWindowsForm
             fTabla.p1 = this.vuelo1;
             fTabla.p2 = this.vuelo2;
             fTabla.ShowDialog();
+        }
+
+        private void buttonPrediccion_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Entra en el botón");
+            //como quiero hacerlo "sin mover" realmente los aviones sino que avise antes
+            // COPIA VUELO 1
+            Position actual1 = vuelo1.GetCurrentPosition(); //donde está AHORA el vuelo
+            Position final1 = vuelo1.GetFinalPosition();    //destino vuelo
+            FlightPlan copiaflightplan1 = new FlightPlan(vuelo1.GetId(), actual1.GetX(), actual1.GetY(), final1.GetX(), final1.GetY(), vuelo1.GetVelocidad());
+            // COPIA VUELO 2
+            Position actual2 = vuelo2.GetCurrentPosition(); 
+            Position final2 = vuelo2.GetFinalPosition();    
+            FlightPlan copiaflightplan2 = new FlightPlan(vuelo2.GetId(), actual2.GetX(), actual2.GetY(), final2.GetX(), final2.GetY(), vuelo2.GetVelocidad());
+
+            // esto coge los valores en los que estamos ahora mismo, y si las distancias están más cerca usa el método Conflicto
+            bool conflicto_copias = copiaflightplan1.Conflicto(copiaflightplan2, dSeguridad);
+            while (conflicto_copias == false && (copiaflightplan1.HasArrived() == false || copiaflightplan2.HasArrived() == false))
+            {
+                copiaflightplan1.Mover(tiempoCiclo);
+                copiaflightplan2.Mover(tiempoCiclo);
+
+                if (copiaflightplan1.Conflicto(copiaflightplan2, dSeguridad) == true)
+                {
+                    conflicto_copias = true;
+                }
+            }
+
+            //mensaje
+            if (conflicto_copias == true)
+            {
+                MessageBox.Show("Los vuelos SÍ entrarán en conflicto");
+            }
+
+            if(conflicto_copias == false)
+            {
+                MessageBox.Show("Los vuelos NO entrarán en conflicto");
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

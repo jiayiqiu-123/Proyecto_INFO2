@@ -65,10 +65,10 @@ namespace SimuladorDeWindowsForm
                     double yFin2 = Convert.ToDouble(txty2F.Text);
                     double vel2 = Convert.ToDouble(txtVel2.Text);
 
-                    if (xIni1 < 0 || xIni1 > 588 || yIni1 < 0 || yIni1 > 388 ||
-                     xFin1 < 0 || xFin1 > 588 || yFin1 < 0 || yFin1 > 388 ||
-                     xIni2 < 0 || xIni2 > 588 || yIni2 < 0 || yIni2 > 388 ||
-                     xFin2 < 0 || xFin2 > 588 || yFin2 < 0 || yFin2 > 388)
+                    if (xIni1 < 0 || xIni1 > 800 || yIni1 < 0 || yIni1 > 550 ||
+                     xFin1 < 0 || xFin1 > 800 || yFin1 < 0 || yFin1 > 550 ||
+                     xIni2 < 0 || xIni2 > 800 || yIni2 < 0 || yIni2 > 550 ||
+                     xFin2 < 0 || xFin2 > 800 || yFin2 < 0 || yFin2 > 550)
                     {
                         MessageBox.Show("Las coordenadas deben estar dentro del espacio aéreo.");
                     }

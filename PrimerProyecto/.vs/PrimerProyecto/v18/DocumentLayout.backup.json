@@ -1,74 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\",
+  "WorkspaceRootPath": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\simuladordewindowsform\\formtablavuelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formtablavuelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\simuladordewindowsform\\formdistancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formdistancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\simuladordewindowsform\\formtablavuelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formtablavuelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formsimulacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\simuladordewindowsform\\formdistancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formdistancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|c:\\users\\paula\\onedrive\\escritorio\\info2\\proyecto-info\\proyecto_info2\\primerproyecto\\simuladordewindowsform\\formsimulacion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formsimulacion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formplanesdevuelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formplanesdevuelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formplanesdevuelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formplanesdevuelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formplanesdevuelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formparametros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formparametros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formparametros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\flightlib\\position.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\position.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplanlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|c:\\users\\usuario\\desktop\\proyecto info 2\\proyecto_info2\\primerproyecto\\flightlib\\flightplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formparametros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formparametros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3A87A27D-F5E9-4F8E-B229-683005A87FF1}|SimulatorConsole\\SimulatorConsole.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simulatorconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A87A27D-F5E9-4F8E-B229-683005A87FF1}|SimulatorConsole\\SimulatorConsole.csproj|solutionrelative:simulatorconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\forminformacionavion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\forminformacionavion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\forminformacionavion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formdistancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formdistancia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\simuladordewindowsform\\formtablavuelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{73078601-1EBF-4DE9-91A4-3748FB1CB9EC}|SimuladorDeWindowsForm\\Gesti\u00F3nDeVuelos.csproj|solutionrelative:simuladordewindowsform\\formtablavuelos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\flightlib\\flightplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B53FCD9-7A68-42EF-A9DA-B0628F94A07E}|FlightLib\\FlightLib.csproj|solutionrelative:flightlib\\flightplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,221 +50,127 @@
       "DocumentGroups": [
         {
           "DockedHeight": 85,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Principal.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\Principal.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\Principal.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T15:02:44.91Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "FormParametros.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormParametros.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormParametros.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormParametros.cs",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormParametros.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAqwCkAAABAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "FormSimulacion.cs",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormSimulacion.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormSimulacion.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAkwJAAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:49:21.684Z",
-              "IsPinned": true,
+              "WhenOpened": "2026-10-18T14:10:33.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Principal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\Principal.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
+              "Title": "FormSimulacion.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.Designer.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormSimulacion.Designer.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.Designer.cs",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormSimulacion.Designer.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAcwHsAAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T13:49:22.463Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormDistancia.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormDistancia.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormDistancia.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormDistancia.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormDistancia.cs [Dise\u00F1o]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T00:39:00.554Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-10-18T14:10:27.979Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormTablaVuelos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormTablaVuelos.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormTablaVuelos.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormTablaVuelos.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormTablaVuelos.cs [Dise\u00F1o]*",
+              "Title": "FormSimulacion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormSimulacion.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormSimulacion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T00:44:08.347Z",
+              "WhenOpened": "2026-10-18T11:01:13.634Z",
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FormSimulacion.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormSimulacion.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormSimulacion.cs",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAAALwAAAAgAAAAAAAAAA==",
+              "Title": "FormPlanesDeVuelo.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:37:18.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T11:01:11.779Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "FormSimulacion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormSimulacion.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormSimulacion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormSimulacion.cs [Dise\u00F1o]",
+              "Title": "FormParametros.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormParametros.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormParametros.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormParametros.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormParametros.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:37:42.746Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-10-18T11:01:07.373Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "FormTablaVuelos.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormTablaVuelos.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormTablaVuelos.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormTablaVuelos.cs*",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormTablaVuelos.cs*",
-              "ViewState": "AgIAACQAAAAAAAAAAAAqwCsAAABcAAAAAAAAAA==",
+              "Title": "FormInformacionAvion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormInformacionAvion.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormInformacionAvion.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormInformacionAvion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormInformacionAvion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T00:46:26.88Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T11:01:04.011Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "FormDistancia.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormDistancia.cs",
+              "Title": "FormDistancia.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormDistancia.cs",
               "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormDistancia.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormDistancia.cs*",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormDistancia.cs*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAswBYAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormDistancia.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormDistancia.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T00:40:02.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T10:58:31.271Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "FormPlanesDeVuelo.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAADwv2sAAAAFAAAAAAAAAA==",
+              "Title": "Principal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\Principal.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\Principal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:38:06.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T10:29:22.615Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "FormPlanesDeVuelo.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormPlanesDeVuelo.cs [Dise\u00F1o]",
+              "Title": "FormTablaVuelos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormTablaVuelos.cs",
+              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormTablaVuelos.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormTablaVuelos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "SimuladorDeWindowsForm\\FormTablaVuelos.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:37:44.293Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-10-18T11:01:16.787Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "FormParametros.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormParametros.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormParametros.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormParametros.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormParametros.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:37:45.167Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Position.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\Position.cs",
-              "RelativeDocumentMoniker": "FlightLib\\Position.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\Position.cs",
-              "RelativeToolTip": "FlightLib\\Position.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAswCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T00:52:30.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FlightPlanList.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlanList.cs",
-              "RelativeDocumentMoniker": "FlightLib\\FlightPlanList.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlanList.cs",
-              "RelativeToolTip": "FlightLib\\FlightPlanList.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAUwEIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T00:52:18.136Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "FlightPlan.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlan.cs",
+              "DocumentMoniker": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlan.cs",
               "RelativeDocumentMoniker": "FlightLib\\FlightPlan.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlan.cs",
+              "ToolTip": "C:\\Users\\paula\\OneDrive\\Escritorio\\info2\\PROYECTO-INFO\\Proyecto_INFO2\\PrimerProyecto\\FlightLib\\FlightPlan.cs",
               "RelativeToolTip": "FlightLib\\FlightPlan.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAiwLAAAACPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-05T14:35:57.724Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FormInformacionAvion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormInformacionAvion.cs",
-              "RelativeDocumentMoniker": "SimuladorDeWindowsForm\\FormInformacionAvion.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimuladorDeWindowsForm\\FormInformacionAvion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "SimuladorDeWindowsForm\\FormInformacionAvion.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:37:46.277Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimulatorConsole\\Program.cs",
-              "RelativeDocumentMoniker": "SimulatorConsole\\Program.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\PROYECTO INFO 2\\Proyecto_INFO2\\PrimerProyecto\\SimulatorConsole\\Program.cs",
-              "RelativeToolTip": "SimulatorConsole\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-13T12:44:55.993Z"
+              "WhenOpened": "2026-10-18T10:29:22.594Z"
             }
           ]
         }
