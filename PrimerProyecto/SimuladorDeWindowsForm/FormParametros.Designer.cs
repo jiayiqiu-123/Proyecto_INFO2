@@ -73,7 +73,7 @@
             this.txtDistancia.Name = "txtDistancia";
             this.txtDistancia.Size = new System.Drawing.Size(132, 22);
             this.txtDistancia.TabIndex = 3;
-            this.txtDistancia.TextChanged += new System.EventHandler(this.txtDistancia_TextChanged);
+            this.txtDistancia.TextChanged += new System.EventHandler(this.txtDistanciaTextChanged);
             // 
             // label1
             // 
