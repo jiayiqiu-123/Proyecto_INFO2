@@ -85,6 +85,7 @@ C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProy
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\Gesti_nD.22B21869.Up2Date
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.exe
 C:\Users\paula\OneDrive\Escritorio\info2\PROYECTO-INFO\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.pdb
+<<<<<<< HEAD
 C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\SimuladorDeWindowsForm.exe.config
 C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\SimuladorDeWindowsForm.exe
 C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\bin\Debug\SimuladorDeWindowsForm.pdb
@@ -104,3 +105,5 @@ C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\Simulador
 C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\Gesti_nD.22B21869.Up2Date
 C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.exe
 C:\Users\sim20\source\repos\jiayiqiu-123\Proyecto_INFO2\PrimerProyecto\SimuladorDeWindowsForm\obj\Debug\SimuladorDeWindowsForm.pdb
+=======
+>>>>>>> 007acd1563ba92450dc03cace26083ca60d06d4e
