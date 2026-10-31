@@ -1,0 +1,180 @@
+﻿FileId: 2
+```csharp PrimerProyecto\FlightLib\FlightPlan.cs
+1: using System;
+2: using System.Collections.Generic;
+3: using System.Linq;
+4: using System.Text;
+5: using System.Threading.Tasks;
+6: 
+7: namespace FlightLib
+8: {
+9:     public class FlightPlan
+10:     // para definir una clase, SIEMPRE se pone en public para poder EDITARLA DESDE FUERA (quien quiera modificar nuestro código)
+11: 
+12:     {
+13:         // ATRIBUTOS (variables) - estas siempre son privadas, sin poner delante nada para no poder ser modificadas
+14: 
+15:         string id; // identificador
+16:         Position initialPosition; // posición inicial
+17:         Position currentPosition; // posicion actual
+18:         Position finalPosition; // posicion final
+19:         double velocidad;
+20: 
+21:         // CONSTRUCTORES (através de parámetros pone atributos)
+22:         // un constructor es un método especial que se llama igual que la clase y sirve para inicializar los atributos de la clase que les hemos pasado como parametro
+23:         // el constructor lo que hace es ""montar"" el objeto, es decir, crear el objeto con los atributos que le pasamos para que esten ordenados como queramos
+24:         // el programa siempre sabrá a que constructor ir por el numero de atributos que tenga 
+25: 
+26:         public FlightPlan(string id, double cpx, double cpy, double fpx, double fpy, double velocidad)
+27:         {
+28:             // atributos de la clase FlightPlan, delante simplemente le ponemos el tipo (ejemplo:"string")
+29:             // delante de los atributos no se pone nada, LOS ATRIBUTOS YA SON PRIVADOS
+30: 
+31:             this.id = id;
+32:             this.initialPosition = new Position(cpx, cpy);
+33:             this.currentPosition = new Position(cpx, cpy);
+34:             this.finalPosition = new Position(fpx, fpy);
+35:             this.velocidad = velocidad;
+36:         }
+37: 
+38:         // METODOS (funciones)
+39:         // son los métodos que van a trabajar sobre los atributos de la clase FlightPlan
+40: 
+41:         // GETTERS
+42:         public string GetId()
+43:         { return id; }
+44: 
+45:         public Position GetInitialPosition()
+46:         { return initialPosition; }
+47: 
+48:         public Position GetCurrentPosition()
+49:         { return currentPosition; }
+50: 
+51:         public Position GetFinalPosition()
+52:         { return finalPosition; }
+53: 
+54:         public double GetVelocidad()
+55:         { return velocidad; }
+56: 
+57: 
+58:         // SETTERS
+59: 
+60:         public void SetId(string id)
+61:         { this.id = id; }
+62: 
+63:         public void SetCurrentPosition(Position currentPosition)
+64:         { this.currentPosition = currentPosition; }
+65: 
+66:         public void SetFinalPosition(Position finalPosition)
+67:         { this.finalPosition = finalPosition; }
+68: 
+69:         public void SetVelocidad(double velocidad)
+70:         // Setter del atributo velocidad
+71:         // es de tipo void porque no devuelve nada
+72:         { this.velocidad = velocidad; }
+73: 
+74:         ///////////////////////////////////////////////////
+75: 
+76:         public void Mover(double tiempo)
+77:         {
+78:             Mover(tiempo, double.MaxValue, double.MaxValue);
+79:         }
+80: 
+81:         public void Mover(double tiempo, double maxX, double maxY)
+82:         // Mueve el vuelo a la posición correspondiente a viajar durante el tiempo que se recibe como parámetro
+83:         {
+84:             //Calculamos la distancia recorrida en el tiempo dado
+85:             double distancia = tiempo * this.velocidad / 60;
+86: 
+87:             //Calculamos las razones trigonométricas
+88:             double dx = finalPosition.GetX() - currentPosition.GetX();
+89:             double dy = finalPosition.GetY() - currentPosition.GetY();
+90: 
+91:             double hipotenusa = Math.Sqrt(dx * dx + dy * dy);
+92: 
+93:             if (hipotenusa == 0)
+94:                 return;
+95: 
+96:             double coseno = dx / hipotenusa;
+97:             double seno = dy / hipotenusa;
+98:             //Caculamos la nueva posición del vuelo
+99:             double x = currentPosition.GetX() + distancia * coseno;
+100:             double y = currentPosition.GetY() + distancia * seno;
+101: 
+102:             Position nextPosition = new Position(x, y);
+103: 
+104:             // !!MODIFICAR MoverVuelo PARA QUE NO SE PASE DEL DESTINO
+105:             if (currentPosition.Distancia(nextPosition) >= hipotenusa)
+106:                 nextPosition = finalPosition;
+107: 
+108:             if (nextPosition.GetX() >= 0 && nextPosition.GetX() <= maxX &&
+109:                 nextPosition.GetY() >= 0 && nextPosition.GetY() <= maxY)
+110:             {
+111:                 currentPosition = nextPosition;
+112:             }
+113:         }
+114: 
+115:         // !!HACER UN METODO PARA QUE DIGA SI UN VUELO LLEGA A SU DESTINO O NO (COMPARANDO POSICIONES)
+116:         public bool HasArrived()
+117:         {
+118:             bool resultado = false;
+119: 
+120:             if (currentPosition.Distancia(finalPosition) == 0)
+121:                 // (currentPosition == finalPosition) --> yo lo tenía así, quiero preguntar si valdría igual
+122:                 resultado = true;
+123:             return resultado;
+124:         }
+125: 
+126: 
+127:         //!!HACER UN METODO QUE DETECTE EL CONFLICTO CUANDO 2 VUELOS ESTAN MÁS CERCANOS
+128:         public bool Conflicto(FlightPlan b, double distanciaSeguridad)
+129:         {
+130:             bool conflicto = false;
+131:             if (this.currentPosition.Distancia(b.currentPosition) < distanciaSeguridad)
+132:             // el this es el plan a porque es el  que llama, el b es el que hemos puesto como parametro, el que le pasamos, el vuelo b
+133:                 conflicto = true;
+134:             return conflicto;
+135:         }
+136: 
+137:         public void Restart()
+138:         { currentPosition = initialPosition; }
+139: 
+140:         public double Distance(FlightPlan plan)
+141:         {
+142:             double two_plans_distance = this.currentPosition.Distancia(plan.currentPosition);
+143:             // este método lo que hace es coger la currentposition y hacer la distancia respecto a otro plan de vuelo "plan" que será un parámetro que le daremos
+144:             return two_plans_distance;
+145:         }
+146: 
+147: 
+148:         public void EscribeConsola()
+149:         // escribe en consola los datos del plan de vuelo
+150:         {
+151:             Console.WriteLine("******************************");
+152:             Console.WriteLine("Datos del vuelo: ");
+153:             Console.WriteLine("Identificador: {0}", id);
+154:             // !!buscar como escribir datos reales con solo 2 decimales (F2, fload de 2 decimales)
+155:             Console.WriteLine("Velocidad: {0:F2}", velocidad);
+156:             Console.WriteLine("Posición actual: ({0:F2},{1:F2})", currentPosition.GetX(), currentPosition.GetY());
+157:             if (this.HasArrived())
+158:                 // se encarga de avisar si hemos llegado a nuestro destino
+159:                 Console.WriteLine("Hemos llegado a nuestro destino");
+160:             Console.WriteLine("******************************");
+161:         }
+162:     }
+163: }
+164: 
+165: // IMPORTANTE PARA ENTENDER EL CÓDIGO:
+166: //---------------------------------------------------------------------------------------------------------------------------------------------
+167: //EXPLICACIÓN DEL METODO SETVELOCIDAD:
+168: // this es como hacer un self de python
+169: // setvelocidad es un método, un objeto flight plan lo llamará y trabajará sobre él
+170: // lo habitual es tener un set para cada atributo, osea haces un set de cada atributo como yo modificaciones quiera
+171: 
+172: //EXPLICACIÓN DEL METODO GETVELOCIDAD:
+173: //los gets sirven para leer la velocidad y devolverlo
+174: // public double(porque velocidad es double) getVelocidad("un get no necesita nada, por lo tanto no parametros")
+175: // por lo tanto esto queda --> public double GetVelocidad()
+176: // { return velocidad; }
+177: //---------------------------------------------------------------------------------------------------------------------------------------------
+```

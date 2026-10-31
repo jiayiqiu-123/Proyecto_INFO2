@@ -27,10 +27,25 @@ namespace SimuladorDeWindowsForm
 
         }
 
+        // Manejador conectado desde el diseñador: txtDistancia.TextChanged
+        public void txtDistanciaTextChanged(object sender, EventArgs e)
+        {
+            // Validación mínima: si el texto no es un número válido, marcar el control en rosa
+            try
+            {
+                float.Parse(txtDistancia.Text);
+                txtDistancia.BackColor = SystemColors.Window;
+            }
+            catch
+            {
+                txtDistancia.BackColor = Color.MistyRose;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-        // Botón guardar
-            if (txtDistancia.Text == "" && txtTiempo.Text == "")
+            // Botón guardar
+            if (txtDistancia.Text == "" || txtTiempo.Text == "")
             {
                 MessageBox.Show("Rellena todos los campos.");
             }

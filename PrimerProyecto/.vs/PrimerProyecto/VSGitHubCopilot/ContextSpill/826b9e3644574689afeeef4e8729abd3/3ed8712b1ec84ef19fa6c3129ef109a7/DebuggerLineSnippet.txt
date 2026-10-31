@@ -1,0 +1,186 @@
+﻿FileId: 1
+```csharp PrimerProyecto\SimuladorDeWindowsForm\FormSimulacion.cs
+1: using FlightLib;
+2: using System;
+3: using System.Collections.Generic;
+4: using System.ComponentModel;
+5: using System.Data;
+6: using System.Drawing;
+7: using System.Linq;
+8: using System.Text;
+9: using System.Threading.Tasks;
+10: using System.Windows.Forms;
+11: 
+12: namespace SimuladorDeWindowsForm
+13: {
+14:     public partial class FormSimulacion : Form
+15:     {
+16:         private FlightPlan vuelo1;
+17:         private FlightPlan vuelo2;
+18:         private double tiempoCiclo;
+19:         float dSeguridad;
+20: 
+21:         public FormSimulacion()
+22:         {
+23:             InitializeComponent();
+24:         }
+25:         
+26:         public void SetDSeguridad(float dSeguridad)
+27:         {
+28:             this.dSeguridad = dSeguridad;
+29:         }
+30: 
+31:         public void SetTiempoCiclo(double tiempoCiclo)
+32:         {
+33:             this.tiempoCiclo = tiempoCiclo;
+34:         }
+35:         public FormSimulacion(FlightPlan vuelo1, FlightPlan vuelo2, double tiempoCiclo)
+36:         {
+37:             InitializeComponent();
+38: 
+39:             this.vuelo1 = vuelo1;
+40:             this.vuelo2 = vuelo2;
+41:             panelEspacioAereo.MouseClick += panelEspacioAereo_MouseClick;
+42:             this.tiempoCiclo = tiempoCiclo;
+43:         }
+44:         private void panel1_Paint(object sender, PaintEventArgs e)
+45:         {
+46:             System.Drawing.Graphics graphics = e.Graphics;
+47:             if (vuelo1 == null || vuelo2 == null)
+48:                 return;
+49: 
+50:             // Posiciones actuales de los aviones
+51:             Position posicion1 = vuelo1.GetCurrentPosition();
+52:             Position posicion2 = vuelo2.GetCurrentPosition();
+53: 
+54:             int x1 = (int)posicion1.GetX();
+55:             int y1 = (int)posicion1.GetY();
+56: 
+57:             int x2 = (int)posicion2.GetX();
+58:             int y2 = (int)posicion2.GetY();
+59: 
+60:             // ==========================================
+61:             // FASE 6: DIBUJAR TRAYECTORIA
+62:             // ==========================================
+63:             // Aquí definimos el grosor a 1 para que sea más fina
+64:             Pen lapizTrayectoria1 = new Pen(Color.Blue, 1);
+65:             Pen lapizTrayectoria2 = new Pen(Color.Red, 1);
+66: 
+67:             // Coordenadas Vuelo 1
+68:             float OrigenX1 = Convert.ToSingle(vuelo1.GetInitialPosition().GetX());
+69:             float OrigenY1 = Convert.ToSingle(vuelo1.GetInitialPosition().GetY());
+70:             float FinalX1 = Convert.ToSingle(vuelo1.GetFinalPosition().GetX());
+71:             float FinalY1 = Convert.ToSingle(vuelo1.GetFinalPosition().GetY());
+72: 
+73:             // Coordenadas Vuelo 2
+74:             float OrigenX2 = Convert.ToSingle(vuelo2.GetInitialPosition().GetX());
+75:             float OrigenY2 = Convert.ToSingle(vuelo2.GetInitialPosition().GetY());
+76:             float FinalX2 = Convert.ToSingle(vuelo2.GetFinalPosition().GetX());
+77:             float FinalY2 = Convert.ToSingle(vuelo2.GetFinalPosition().GetY());
+78: 
+79:             // Dibujamos las dos líneas de trayectoria
+80:             graphics.DrawLine(lapizTrayectoria1, OrigenX1, OrigenY1, FinalX1, FinalY1);
+81:             graphics.DrawLine(lapizTrayectoria2, OrigenX2, OrigenY2, FinalX2, FinalY2);
+82: 
+83:             // Dibujamos los aviones DESPUÉS de las líneas para que se vean por encima
+84:             e.Graphics.FillEllipse(Brushes.Blue, x1, y1, 12, 12);
+85:             e.Graphics.FillEllipse(Brushes.Red, x2, y2, 12, 12);
+86: 
+87:             // ==========================================
+88:             // FASE 7: DISTANCIA DE SEGURIDAD
+89:             // ==========================================
+90:             Pen lapizSeguridad = new Pen(Color.Red, 1);
+91:             lapizSeguridad.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash; // Línea de rayas
+92: 
+93:             float diametro = dSeguridad * 2;
+94: 
+95:             // Vuelo 1: Sumamos 6 a la posición actual para calcular el centro exacto del avión (que mide 12x12)
+96:             float esquinaX1 = (x1 + 6) - dSeguridad;
+97:             float esquinaY1 = (y1 + 6) - dSeguridad;
+98:             e.Graphics.DrawEllipse(lapizSeguridad, esquinaX1, esquinaY1, diametro, diametro);
+99: 
+100:             // Vuelo 2: Hacemos lo mismo para el segundo avión
+101:             float esquinaX2 = (x2 + 6) - dSeguridad;
+102:             float esquinaY2 = (y2 + 6) - dSeguridad;
+103:             e.Graphics.DrawEllipse(lapizSeguridad, esquinaX2, esquinaY2, diametro, diametro);
+104: 
+105:         }
+106: 
+107:         private void FormSimulacion_Load(object sender, EventArgs e)
+108:         {
+109: 
+110:         }
+111: 
+112:         private void MoverAviones()
+113:         {
+114:             if (vuelo1 == null || vuelo2 == null)
+115:                 return;
+116: 
+117:             vuelo1.Mover(tiempoCiclo, panelEspacioAereo.Width - 12, panelEspacioAereo.Height - 12);
+118:             vuelo2.Mover(tiempoCiclo, panelEspacioAereo.Width - 12, panelEspacioAereo.Height - 12);
+119: 
+120:             panelEspacioAereo.Invalidate();
+121:         }
+122: 
+123:         private void btnMover_Click(object sender, EventArgs e)
+124:         {
+125:             MoverAviones();
+126:         }
+127:         private void panelEspacioAereo_MouseClick(object sender, MouseEventArgs e)
+128:         {
+129:             Position posicion1 = vuelo1.GetCurrentPosition();
+130: 
+131:             int x1 = (int)posicion1.GetX();
+132:             int y1 = (int)posicion1.GetY();
+133: 
+134:             if (e.X >= x1 && e.X <= x1 + 12 &&
+135:                 e.Y >= y1 && e.Y <= y1 + 12)
+136:             {
+137:                 FormInformacionAvion formulario = new FormInformacionAvion(vuelo1);
+138:                 formulario.ShowDialog();
+139:                 return;
+140:             }
+141: 
+142:             Position posicion2 = vuelo2.GetCurrentPosition();
+143: 
+144:             int x2 = (int)posicion2.GetX();
+145:             int y2 = (int)posicion2.GetY();
+146: 
+147:             if (e.X >= x2 && e.X <= x2 + 12 &&
+148:                 e.Y >= y2 && e.Y <= y2 + 12)
+149:             {
+150:                 FormInformacionAvion formulario = new FormInformacionAvion(vuelo2);
+151:                 formulario.ShowDialog();
+152:             }
+153:         }
+154: 
+155:         private void label4_Click(object sender, EventArgs e)
+156:         {
+157: 
+158:         }
+159: 
+160:         private void btnIniciarAutomatico_Click(object sender, EventArgs e)
+161:         {
+162:             if (timerSimulacion.Enabled == false)
+163:             {
+164:                 timerSimulacion.Start();
+165:                 btnSimulacionAutomatica.Text = "Detener simulación automática";
+166:                 btnMover.Enabled = false;
+167:             }
+168:             else
+169:             {
+170:                 timerSimulacion.Stop();
+171:                 btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+172:                 btnMover.Enabled = true;
+173:             }
+174: 
+175: 
+176:     }
+177: 
+178:         private void timerSimulacion_Tick(object sender, EventArgs e)
+179:         {
+180:             MoverAviones();
+181:         }
+182:     }
+183: }
+```

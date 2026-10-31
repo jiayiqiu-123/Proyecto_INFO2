@@ -13,10 +13,12 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormSimulacion : Form
     {
-        private FlightPlan vuelo1;
-        private FlightPlan vuelo2;
+        FlightPlan vuelo1;
+        FlightPlan vuelo2;
         private double tiempoCiclo;
         float dSeguridad;
+        bool enConflicto;
+        // esto me servirá como variable para el conflicto, en el buttonPredicción
 
         public FormSimulacion()
         {
@@ -109,12 +111,36 @@ namespace SimuladorDeWindowsForm
 
         }
 
-        private void btnMover_Click(object sender, EventArgs e)
+        private void MoverAviones()
         {
-            vuelo1.Mover(tiempoCiclo, panelEspacioAereo.Width - 12, panelEspacioAereo.Height - 12);
-            vuelo2.Mover(tiempoCiclo, panelEspacioAereo.Width - 12, panelEspacioAereo.Height - 12);
+            if (vuelo1 == null || vuelo2 == null)
+                return;
+
+            vuelo1.Mover(tiempoCiclo, panelEspacioAereo.ClientSize.Width - 12, panelEspacioAereo.ClientSize.Height - 12);
+            vuelo2.Mover(tiempoCiclo, panelEspacioAereo.ClientSize.Width - 12, panelEspacioAereo.ClientSize.Height - 12);
 
             panelEspacioAereo.Invalidate();
+
+            // añadimos para poder detectar conflictos y usarlo en el buttonPredicción
+            bool hayConflicto = vuelo1.Conflicto(vuelo2, dSeguridad);
+            // creamos la variable "hayConflicto" en booleano, su valor lo decidirá el método Conflicto que ya tenemos (midiendo dist1 y dist2)
+            // si dist<dseguridad, hay conflicto, si no, no hay conflicto
+            if (hayConflicto == true && enConflicto == false)
+                // esto para asegurarnos de que antes no había conflicto
+            {
+                enConflicto = true;
+                MessageBox.Show("¡CUIDADO, los vuelos están a una distancia inferior a la de seguridad!");
+            }
+            if (hayConflicto == false)
+            {
+                enConflicto = false;
+            }
+            // al ponerlo en 2 diferentes, cada vez que se mueva irán comprobando verdad? !
+        }
+
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+            MoverAviones();
         }
         private void panelEspacioAereo_MouseClick(object sender, MouseEventArgs e)
         {
@@ -145,6 +171,66 @@ namespace SimuladorDeWindowsForm
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnIniciarAutomatico_Click(object sender, EventArgs e)
+        {
+            if (timerSimulacion.Enabled == false)
+            {
+                timerSimulacion.Start();
+                btnSimulacionAutomatica.Text = "Detener simulación automática";
+                btnMover.Enabled = false;
+            }
+            else
+            {
+                timerSimulacion.Stop();
+                btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+                btnMover.Enabled = true;
+            }
+
+
+    }
+
+        private void timerSimulacion_Tick(object sender, EventArgs e)
+        {
+            MoverAviones();
+        }
+
+        private void buttonVerTablaVuelos_Click(object sender, EventArgs e)
+        {
+            FormTablaVuelos fTabla = new FormTablaVuelos();
+            // Le pasamos los dos vuelos que tienes en la simulación
+            fTabla.p1 = this.vuelo1;
+            fTabla.p2 = this.vuelo2;
+            fTabla.ShowDialog();
+        }
+
+        private void buttonPrediccion_Click(object sender, EventArgs e)
+        {
+            // Copias de los vuelos para cálculo analítico (no modifican los originales)
+            Position actual1 = vuelo1.GetCurrentPosition(); // posición actual vuelo1
+            Position final1 = vuelo1.GetFinalPosition();    // posición final vuelo1
+            FlightPlan copia1 = new FlightPlan(vuelo1.GetId(), actual1.GetX(), actual1.GetY(), final1.GetX(), final1.GetY(), vuelo1.GetVelocidad());
+
+            Position actual2 = vuelo2.GetCurrentPosition(); // posición actual vuelo2
+            Position final2 = vuelo2.GetFinalPosition();    // posición final vuelo2
+            FlightPlan copia2 = new FlightPlan(vuelo2.GetId(), actual2.GetX(), actual2.GetY(), final2.GetX(), final2.GetY(), vuelo2.GetVelocidad());
+
+            double tmin;
+            double minDist = ComputeMinDistanceBetweenPlans(copia1, copia2, out tmin);
+
+            if (minDist < dSeguridad)
+            {
+                MessageBox.Show("Los vuelos SÍ entrarán en conflicto. Dist mínima=" + minDist.ToString("F2") + " en t=" + tmin.ToString("F2"));
+            }
+            else
+            {
+                MessageBox.Show("Los vuelos NO entrarán en conflicto. Dist mínima=" + minDist.ToString("F2") + " en t=" + tmin.ToString("F2"));
+            }
+        }
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
