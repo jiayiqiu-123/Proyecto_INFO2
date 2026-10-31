@@ -209,26 +209,7 @@ namespace SimuladorDeWindowsForm
 
         private void buttonPrediccion_Click(object sender, EventArgs e)
         {
-            // Copias de los vuelos para cálculo analítico (no modifican los originales)
-            Position actual1 = vuelo1.GetCurrentPosition(); // posición actual vuelo1
-            Position final1 = vuelo1.GetFinalPosition();    // posición final vuelo1
-            FlightPlan copia1 = new FlightPlan(vuelo1.GetId(), actual1.GetX(), actual1.GetY(), final1.GetX(), final1.GetY(), vuelo1.GetVelocidad());
-
-            Position actual2 = vuelo2.GetCurrentPosition(); // posición actual vuelo2
-            Position final2 = vuelo2.GetFinalPosition();    // posición final vuelo2
-            FlightPlan copia2 = new FlightPlan(vuelo2.GetId(), actual2.GetX(), actual2.GetY(), final2.GetX(), final2.GetY(), vuelo2.GetVelocidad());
-
-            double tmin;
-            double minDist = ComputeMinDistanceBetweenPlans(copia1, copia2, out tmin);
-
-            if (minDist < dSeguridad)
-            {
-                MessageBox.Show("Los vuelos SÍ entrarán en conflicto. Dist mínima=" + minDist.ToString("F2") + " en t=" + tmin.ToString("F2"));
-            }
-            else
-            {
-                MessageBox.Show("Los vuelos NO entrarán en conflicto. Dist mínima=" + minDist.ToString("F2") + " en t=" + tmin.ToString("F2"));
-            }
+            
         }
         private void label2_Click(object sender, EventArgs e)
         {
