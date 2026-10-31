@@ -42,6 +42,8 @@ namespace FlightLib
         public string GetId()
         { return id; }
 
+        public Position GetInitialPosition()
+        { return initialPosition; }
         public Position GetCurrentPosition()
         { return currentPosition; }
 

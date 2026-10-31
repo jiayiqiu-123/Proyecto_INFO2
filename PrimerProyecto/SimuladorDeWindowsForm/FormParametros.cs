@@ -14,7 +14,7 @@ namespace SimuladorDeWindowsForm
     public partial class FormParametros : Form
     {
         // Variables públicas para leerlas desde Form1
-        public double distSeguridad = 0;
+        public float distSeguridad = 0;
         public double tiempoCiclo = 0;
 
         public FormParametros()
@@ -38,7 +38,7 @@ namespace SimuladorDeWindowsForm
             {
                 try
                 {
-                    double d = Convert.ToDouble(txtDistancia.Text);
+                    float d = Convert.ToSingle(txtDistancia.Text);
                     double t = Convert.ToDouble(txtTiempo.Text);
 
                     if (d <= 0 || t <= 0)
@@ -64,6 +64,14 @@ namespace SimuladorDeWindowsForm
             distSeguridad = 0;
             tiempoCiclo = 0;
             this.Close();
+        }
+        public float GetDistSeguridad()
+        {
+            return distSeguridad;
+        }
+        public double GetTiempoCiclo()
+        {
+            return tiempoCiclo;
         }
     }
 }
