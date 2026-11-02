@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCambiarVelocidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCambiarVelocidad.Designer.cs">
+      <DependentUpon>FormCambiarVelocidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConflicto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConflicto.Designer.cs">
+      <DependentUpon>FormConflicto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDistancia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +102,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCambiarVelocidad.resx">
+      <DependentUpon>FormCambiarVelocidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConflicto.resx">
+      <DependentUpon>FormConflicto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDistancia.resx">
       <DependentUpon>FormDistancia.cs</DependentUpon>
       <SubType>Designer</SubType>

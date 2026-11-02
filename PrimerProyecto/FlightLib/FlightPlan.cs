@@ -75,41 +75,33 @@ namespace FlightLib
 
         public void Mover(double tiempo)
         {
-            Mover(tiempo, double.MaxValue, double.MaxValue);
-        }
+            // Distancia que recorre el avión durante el tiempo indicado
+            double distancia = tiempo * velocidad;
 
-        public void Mover(double tiempo, double maxX, double maxY)
-        // Mueve el vuelo a la posición correspondiente a viajar durante el tiempo que se recibe como parámetro
-        {
-            //Calculamos la distancia recorrida en el tiempo dado
-            double distancia = tiempo * this.velocidad / 60;
-
-            //Calculamos las razones trigonométricas
+            // Vector desde la posición actual hasta el destino
             double dx = finalPosition.GetX() - currentPosition.GetX();
             double dy = finalPosition.GetY() - currentPosition.GetY();
 
-            double hipotenusa = Math.Sqrt(dx * dx + dy * dy);
+            // Longitud de la trayectoria que falta
+            double longitud = Math.Sqrt(dx * dx + dy * dy);
 
-            if (hipotenusa == 0)
+            if (longitud == 0)
                 return;
 
-            double coseno = dx / hipotenusa;
-            double seno = dy / hipotenusa;
-            //Caculamos la nueva posición del vuelo
-            double x = currentPosition.GetX() + distancia * coseno;
-            double y = currentPosition.GetY() + distancia * seno;
+            // Dirección de la trayectoria
+            double direccionX = dx / longitud;
+            double direccionY = dy / longitud;
 
-            Position nextPosition = new Position(x, y);
+            // Nueva posición según la ecuación del movimiento
+            double x = currentPosition.GetX() + distancia * direccionX;
+            double y = currentPosition.GetY() + distancia * direccionY;
 
-            // !!MODIFICAR MoverVuelo PARA QUE NO SE PASE DEL DESTINO
-            if (currentPosition.Distancia(nextPosition) >= hipotenusa)
-                nextPosition = finalPosition;
+            Position nuevaPosicion = new Position(x, y);
 
-            if (nextPosition.GetX() >= 0 && nextPosition.GetX() <= maxX &&
-                nextPosition.GetY() >= 0 && nextPosition.GetY() <= maxY)
-            {
-                currentPosition = nextPosition;
-            }
+            // Si llega o se pasa del destino, lo dejamos exactamente en el destino
+            if (currentPosition.Distancia(nuevaPosicion) >= longitud)
+                nuevaPosicion = finalPosition;
+            currentPosition = nuevaPosicion;
         }
 
         // !!HACER UN METODO PARA QUE DIGA SI UN VUELO LLEGA A SU DESTINO O NO (COMPARANDO POSICIONES)
@@ -128,7 +120,9 @@ namespace FlightLib
         public bool Conflicto(FlightPlan b, double distanciaSeguridad)
         {
             bool conflicto = false;
-            if (this.currentPosition.Distancia(b.currentPosition) < distanciaSeguridad)
+            double distanciaEntreCentros = this.currentPosition.Distancia(b.currentPosition);
+            double distanciaParaConflicto = distanciaSeguridad * 2;
+            if (distanciaEntreCentros <= distanciaParaConflicto)
             // el this es el plan a porque es el  que llama, el b es el que hemos puesto como parametro, el que le pasamos, el vuelo b
                 conflicto = true;
             return conflicto;

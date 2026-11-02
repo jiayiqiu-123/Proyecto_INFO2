@@ -74,7 +74,23 @@ namespace SimuladorDeWindowsForm
             FormSimulacion formulario = new FormSimulacion(vuelo1, vuelo2, tiempoCiclo);
             formulario.SetDSeguridad(distanciaSeguridad);
             formulario.SetTiempoCiclo(tiempoCiclo);
-            
+            formulario.CrearSimulacion();
+
+            formulario.ShowDialog();
+        }
+
+        private void btnPruebas_Click(object sender, EventArgs e)
+        {
+            vuelo1 = new FlightPlan("VLG1234", 50, 100, 500, 300, 10);
+            vuelo2 = new FlightPlan("IBE1234", 50, 300, 500, 100, 10);
+            distanciaSeguridad = 20;
+            tiempoCiclo = 1;
+            FormSimulacion formulario = new FormSimulacion(vuelo1, vuelo2, tiempoCiclo);
+
+            formulario.SetDSeguridad(distanciaSeguridad);
+            formulario.SetTiempoCiclo(tiempoCiclo);
+            formulario.CrearSimulacion();
+
             formulario.ShowDialog();
         }
     }

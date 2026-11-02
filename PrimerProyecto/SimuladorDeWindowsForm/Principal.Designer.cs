@@ -33,6 +33,7 @@
             this.menuPlanesDeVueloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parámetrosDeSeguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.espacióAerioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPruebas = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -55,7 +56,7 @@
             this.parámetrosDeSeguridadToolStripMenuItem,
             this.espacióAerioToolStripMenuItem});
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(85, 26);
             this.opcionesToolStripMenuItem.Text = "Opciones";
             // 
             // menuPlanesDeVueloToolStripMenuItem
@@ -79,11 +80,24 @@
             this.espacióAerioToolStripMenuItem.Text = "Espacio aéreo";
             this.espacióAerioToolStripMenuItem.Click += new System.EventHandler(this.espacióAerioToolStripMenuItem_Click);
             // 
+            // btnPruebas
+            // 
+            this.btnPruebas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnPruebas.ForeColor = System.Drawing.Color.DeepPink;
+            this.btnPruebas.Location = new System.Drawing.Point(383, 209);
+            this.btnPruebas.Name = "btnPruebas";
+            this.btnPruebas.Size = new System.Drawing.Size(221, 96);
+            this.btnPruebas.TabIndex = 1;
+            this.btnPruebas.Text = "SOLO PRUEBAS";
+            this.btnPruebas.UseVisualStyleBackColor = true;
+            this.btnPruebas.Click += new System.EventHandler(this.btnPruebas_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.btnPruebas);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -104,5 +118,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuPlanesDeVueloToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parámetrosDeSeguridadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem espacióAerioToolStripMenuItem;
+        private System.Windows.Forms.Button btnPruebas;
     }
 }
