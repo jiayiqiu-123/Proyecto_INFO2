@@ -41,7 +41,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(199, 64);
+            this.label1.Location = new System.Drawing.Point(326, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // btnCancelar
             // 
             this.btnCancelar.ForeColor = System.Drawing.Color.Red;
-            this.btnCancelar.Location = new System.Drawing.Point(369, 295);
+            this.btnCancelar.Location = new System.Drawing.Point(588, 363);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(97, 28);
             this.btnCancelar.TabIndex = 4;
@@ -69,7 +69,7 @@
             this.tablaVuelos.Name = "tablaVuelos";
             this.tablaVuelos.RowHeadersWidth = 51;
             this.tablaVuelos.RowTemplate.Height = 24;
-            this.tablaVuelos.Size = new System.Drawing.Size(438, 209);
+            this.tablaVuelos.Size = new System.Drawing.Size(657, 274);
             this.tablaVuelos.TabIndex = 5;
             // 
             // columnaVuelo
@@ -96,9 +96,9 @@
             // btnAceptar
             // 
             this.btnAceptar.ForeColor = System.Drawing.Color.Green;
-            this.btnAceptar.Location = new System.Drawing.Point(28, 295);
+            this.btnAceptar.Location = new System.Drawing.Point(28, 363);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(335, 28);
+            this.btnAceptar.Size = new System.Drawing.Size(554, 28);
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar cambios";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 338);
+            this.ClientSize = new System.Drawing.Size(818, 547);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.tablaVuelos);
             this.Controls.Add(this.btnCancelar);
