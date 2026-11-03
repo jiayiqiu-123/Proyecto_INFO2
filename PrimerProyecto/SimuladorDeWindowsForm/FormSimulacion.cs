@@ -266,6 +266,8 @@ namespace SimuladorDeWindowsForm
                 {
                     FormConflicto c = new FormConflicto();
                     c.ShowDialog();
+                    if (c.ResolverConflicto == true)
+                        simulacion.DuplicarVelocidadVuelo1();
                 }
             }
             else if (simulacionEstabaActiva == true)
