@@ -13,17 +13,26 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormSimulacion : Form
     {
-        FlightPlan vuelo1;
-        FlightPlan vuelo2;
-        Simulacion simulacion;
-        private double tiempoCiclo;
+        FlightPlanList ListaVuelos = new FlightPlanList();
+        double tiempoCiclo;
         float dSeguridad;
-        bool enConflicto;
+        bool enConflicto = false;
         // esto me servirá como variable para el conflicto, en el buttonPredicción
 
         public FormSimulacion()
         {
             InitializeComponent();
+            // Doble búfer para evitar parpadeo
+            this.DoubleBuffered = true;
+            typeof(Panel).InvokeMember("DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.NonPublic,
+                null, panelEspacioAereo, new object[] { true });
+
+            // Enlazar el clic por código (evita problemas con el diseñador)
+            panelEspacioAereo.MouseClick -= panelEspacioAereo_MouseClick;
+            panelEspacioAereo.MouseClick += panelEspacioAereo_MouseClick;
         }
 
         public void SetDSeguridad(float dSeguridad)
@@ -35,145 +44,128 @@ namespace SimuladorDeWindowsForm
         {
             this.tiempoCiclo = tiempoCiclo;
         }
-        public void CrearSimulacion()
-        {
-            simulacion = new Simulacion(vuelo1, vuelo2, tiempoCiclo, dSeguridad);
-        }
-        public FormSimulacion(FlightPlan vuelo1, FlightPlan vuelo2, double tiempoCiclo)
-        {
-            InitializeComponent();
 
-            this.vuelo1 = vuelo1;
-            this.vuelo2 = vuelo2;
-            panelEspacioAereo.MouseClick += panelEspacioAereo_MouseClick;
-            this.tiempoCiclo = tiempoCiclo;
+        public void SetListaVuelos(FlightPlanList listaVuelos)
+        {
+            this.ListaVuelos = listaVuelos;
         }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            System.Drawing.Graphics graphics = e.Graphics;
-            if (vuelo1 == null || vuelo2 == null)
-                return;
+            Graphics graphics = e.Graphics;
 
-            // Posiciones actuales de los aviones
-            Position posicion1 = vuelo1.GetCurrentPosition();
-            Position posicion2 = vuelo2.GetCurrentPosition();
-
-            int x1 = (int)posicion1.GetX();
-            int y1 = (int)posicion1.GetY();
-
-            int x2 = (int)posicion2.GetX();
-            int y2 = (int)posicion2.GetY();
-
-
-            // FASE 6: DIBUJAR TRAYECTORIA
-
-            // Aquí definimos el grosor a 1 para que sea más fina
-            Pen lapizTrayectoria1 = new Pen(Color.Blue, 1);
-            Pen lapizTrayectoria2 = new Pen(Color.Red, 1);
-
-            // Coordenadas Vuelo 1
-            // Las posiciones del vuelo son la esquina superior izquierda del avión.
-            // La trayectoria debe pasar por el centro, por eso sumamos 6 píxeles.
-            float OrigenX1 = Convert.ToSingle(vuelo1.GetInitialPosition().GetX() + 6);
-            float OrigenY1 = Convert.ToSingle(vuelo1.GetInitialPosition().GetY() + 6);
-            float FinalX1 = Convert.ToSingle(vuelo1.GetFinalPosition().GetX() + 6);
-            float FinalY1 = Convert.ToSingle(vuelo1.GetFinalPosition().GetY() + 6);
-
-            // Coordenadas Vuelo 2
-            float OrigenX2 = Convert.ToSingle(vuelo2.GetInitialPosition().GetX() + 6);
-            float OrigenY2 = Convert.ToSingle(vuelo2.GetInitialPosition().GetY() + 6);
-            float FinalX2 = Convert.ToSingle(vuelo2.GetFinalPosition().GetX() + 6);
-            float FinalY2 = Convert.ToSingle(vuelo2.GetFinalPosition().GetY() + 6);
-
-            // Dibujamos las dos líneas de trayectoria
-            graphics.DrawLine(lapizTrayectoria1, OrigenX1, OrigenY1, FinalX1, FinalY1);
-            graphics.DrawLine(lapizTrayectoria2, OrigenX2, OrigenY2, FinalX2, FinalY2);
-
-            // Dibujamos los aviones DESPUÉS de las líneas para que se vean por encima
-            e.Graphics.FillEllipse(Brushes.Blue, x1, y1, 12, 12);
-            e.Graphics.FillEllipse(Brushes.Red, x2, y2, 12, 12);
-
-
-            // FASE 7: DISTANCIA DE SEGURIDAD
-
-            Pen lapizSeguridad = new Pen(Color.Red, 1);
-            lapizSeguridad.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash; // Línea de rayas
-
-            float diametro = dSeguridad * 2;
-
-            // Vuelo 1: Sumamos 6 a la posición actual para calcular el centro exacto del avión (que mide 12x12)
-            float esquinaX1 = (x1 + 6) - dSeguridad;
-            float esquinaY1 = (y1 + 6) - dSeguridad;
-            if (enConflicto == true)
-                e.Graphics.FillEllipse(Brushes.OrangeRed, esquinaX1,esquinaY1,diametro,diametro);
-            e.Graphics.DrawEllipse(lapizSeguridad, esquinaX1, esquinaY1, diametro, diametro);
-
-            // Vuelo 2: Hacemos lo mismo para el segundo avión
-            float esquinaX2 = (x2 + 6) - dSeguridad;
-            float esquinaY2 = (y2 + 6) - dSeguridad;
-            if (enConflicto == true)
+            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
-                e.Graphics.FillEllipse(Brushes.OrangeRed,esquinaX2, esquinaY2, diametro, diametro);
+                FlightPlan vuelo = ListaVuelos.GetFlightPlan(i);
+                if (vuelo == null)
+                {
+                    return;
+                }
+                else
+                {
+                    // Definir posiciones iniciales y finales de cada vuelo
+                    Position posicion = vuelo.GetCurrentPosition();
+                    int x = (int)posicion.GetX();
+                    int y = (int)posicion.GetY();
+
+                    float OrigenX = Convert.ToSingle(vuelo.GetInitialPosition().GetX() + 6);
+                    float OrigenY = Convert.ToSingle(vuelo.GetInitialPosition().GetY() + 6);
+                    float FinalX = Convert.ToSingle(vuelo.GetFinalPosition().GetX() + 6);
+                    float FinalY = Convert.ToSingle(vuelo.GetFinalPosition().GetY() + 6);
+
+                    // Asignar un color único a cada vuelo
+                    vuelo.SetRandomColor();
+                    Color color = vuelo.GetColor();
+                    using (Pen lapizTrayectoria = new Pen(color, 1))
+                    {
+                        graphics.DrawLine(lapizTrayectoria, OrigenX, OrigenY, FinalX, FinalY);
+                    }
+
+                    float diametro = dSeguridad * 2;
+                    float esquinaX = x + 6 - dSeguridad;
+                    float esquinaY = y + 6 - dSeguridad;
+
+                    using (Pen lapizSeguridad = new Pen(Color.OrangeRed, 1))
+                    {
+                        lapizSeguridad.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                        graphics.DrawEllipse(lapizSeguridad, esquinaX, esquinaY, diametro, diametro);
+                    }
+
+                    if (enConflicto)
+                    {
+                        using (Brush brochaConflicto = new SolidBrush(Color.OrangeRed))
+                        {
+                            graphics.FillEllipse(brochaConflicto, esquinaX, esquinaY, diametro, diametro);
+                        }
+                    }
+                    float radioPunto = 3;
+                    using (Brush brochaPunto = new SolidBrush(color))
+                    {
+                        graphics.FillEllipse(brochaPunto, x + 6 - radioPunto, y + 6 - radioPunto, radioPunto * 2, radioPunto * 2);
+                    }
+
+                }
             }
-            e.Graphics.DrawEllipse(lapizSeguridad, esquinaX2, esquinaY2, diametro, diametro);
-            // Volvemos a dibujar los aviones encima de las elipses
-            e.Graphics.FillEllipse(Brushes.Blue, x1, y1, 12, 12);
-            e.Graphics.FillEllipse(Brushes.Red, x2, y2, 12, 12);
         }
 
         private void FormSimulacion_Load(object sender, EventArgs e)
         {
-            if (vuelo1 == null || vuelo2 == null)
-                return;
-            //PREDICCIÓN CALCULADA
-            bool hayConflicto = simulacion.PredecirConflicto();
-            if (hayConflicto == true)
+            if (timerSimulacion.Enabled == true)
             {
-                FormConflicto f = new FormConflicto();
-                f.ShowDialog();
-                if (f.ResolverConflicto == true)
-                    simulacion.DuplicarVelocidadVuelo1();
+                timerSimulacion.Stop();
+                btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+                btnMover.Enabled = true;
             }
-        }
-
-        private void MoverAviones()
-        {
-            if (vuelo1 == null || vuelo2 == null)
-                return;
-            simulacion.Mover();
-            enConflicto = simulacion.HayConflicto();
+            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
+            {
+                ListaVuelos.GetFlightPlan(i).Restart();
+                ListaVuelos.GetFlightPlan(i).RestaurarVelocidadesOriginales();
+            }
             panelEspacioAereo.Invalidate();
-        }
 
+                    FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
+                    if (hayConflicto != null)
+                    {
+                        FormConflicto f = new FormConflicto();
+                        f.SetListaConflictos(hayConflicto);
+                        f.ShowDialog();
+                    }
+
+
+        }
         private void btnMover_Click(object sender, EventArgs e)
         {
-            MoverAviones();
+            ListaVuelos.MoverTodosVuelos();
+            enConflicto = ListaVuelos.HayConflictoTiempoReal();
+            panelEspacioAereo.Invalidate();
         }
         private void panelEspacioAereo_MouseClick(object sender, MouseEventArgs e)
         {
-            Position posicion1 = vuelo1.GetCurrentPosition();
-
-            int x1 = (int)posicion1.GetX();
-            int y1 = (int)posicion1.GetY();
-
-            if (e.X >= x1 && e.X <= x1 + 12 &&
-                e.Y >= y1 && e.Y <= y1 + 12)
-            {
-                FormInformacionAvion f = new FormInformacionAvion(vuelo1);
-                f.ShowDialog();
+            if (ListaVuelos == null)
                 return;
-            }
 
-            Position posicion2 = vuelo2.GetCurrentPosition();
-
-            int x2 = (int)posicion2.GetX();
-            int y2 = (int)posicion2.GetY();
-
-            if (e.X >= x2 && e.X <= x2 + 12 &&
-                e.Y >= y2 && e.Y <= y2 + 12)
+            for (int i = ListaVuelos.GetNumber() - 1; i >= 0; i--)
             {
-                FormInformacionAvion i = new FormInformacionAvion(vuelo2);
-                i.ShowDialog();
+                FlightPlan vuelo = ListaVuelos.GetFlightPlan(i);
+                if (vuelo == null)
+                    continue;
+
+                Position posicion = vuelo.GetCurrentPosition();
+
+                // Centro del avión (igual que en Paint: x + 6, y + 6)
+                double centroX = posicion.GetX() + 6;
+                double centroY = posicion.GetY() + 6;
+
+                double dx = e.X - centroX;
+                double dy = e.Y - centroY;
+
+                // Radio de clic: 15 píxeles
+                if (dx * dx + dy * dy <= 15 * 15)
+                {
+                    FormInformacionAvion formulario = new FormInformacionAvion();
+                    formulario.SetVuelo(vuelo);
+                    formulario.ShowDialog();
+                    return;
+                }
             }
         }
 
@@ -186,6 +178,7 @@ namespace SimuladorDeWindowsForm
         {
             if (timerSimulacion.Enabled == false)
             {
+                timerSimulacion.Interval = 200;
                 timerSimulacion.Start();
                 btnSimulacionAutomatica.Text = "Detener simulación automática";
                 btnMover.Enabled = false;
@@ -200,22 +193,32 @@ namespace SimuladorDeWindowsForm
 
         private void timerSimulacion_Tick(object sender, EventArgs e)
         {
-            MoverAviones();
+            if (ListaVuelos.HasAllArrived())
+            {
+                timerSimulacion.Stop();
+                btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+                btnMover.Enabled = true;
+            }
+            else
+            {
+                ListaVuelos.MoverTodosVuelos();
+                enConflicto = ListaVuelos.HayConflictoTiempoReal();
+                panelEspacioAereo.Invalidate();
+            }
+
         }
 
         private void buttonVerTablaVuelos_Click(object sender, EventArgs e)
         {
             FormTablaVuelos fTabla = new FormTablaVuelos();
-            // Le pasamos los dos vuelos que tienes en la simulación
-            fTabla.p1 = this.vuelo1;
-            fTabla.p2 = this.vuelo2;
+            fTabla.SetListaVuelos(ListaVuelos);
             fTabla.ShowDialog();
         }
 
         private void buttonPrediccion_Click(object sender, EventArgs e)
         {
-            bool hayConflicto = simulacion.PredecirConflicto();
-            if (hayConflicto == true)
+            FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
+            if (hayConflicto != null)
                 MessageBox.Show("Los círculos de seguridad se tocarán.");
             else
                 MessageBox.Show("Los círculos de seguridad no se tocarán.");
@@ -233,47 +236,50 @@ namespace SimuladorDeWindowsForm
                 btnSimulacionAutomatica.Text = "Iniciar simulación automática";
                 btnMover.Enabled = true;
             }
-            simulacion.Reiniciar();
-            simulacion.RestaurarVelocidadesOriginales();
-            bool hayConflictoNuevo = simulacion.PredecirConflicto();
-
-            if (hayConflictoNuevo == true)
+            for(int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
-                FormConflicto f = new FormConflicto();
-                f.ShowDialog();
-                if (f.ResolverConflicto == true)
-                    simulacion.DuplicarVelocidadVuelo1();
+                ListaVuelos.GetFlightPlan(i).Restart();
+                ListaVuelos.GetFlightPlan(i).RestaurarVelocidadesOriginales();
             }
             panelEspacioAereo.Invalidate();
+            FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
+            if (hayConflicto != null)
+            {
+                FormConflicto f = new FormConflicto();
+                f.SetListaConflictos(hayConflicto);
+                f.ShowDialog();
+            }
+        
         }
 
         private void btnCambiarVelocidad_Click(object sender, EventArgs e)
         {
-            bool simulacionEstabaActiva = timerSimulacion.Enabled;
-            FormCambiarVelocidad f = new FormCambiarVelocidad(vuelo1, vuelo2);
-            f.ShowDialog();
-            if (f.CambiosAceptados == true)
+            if (timerSimulacion.Enabled == true)
             {
-                simulacion.CambiarVelocidades(f.Velocidad1Nueva,f.Velocidad2Nueva);
                 timerSimulacion.Stop();
                 btnSimulacionAutomatica.Text = "Iniciar simulación automática";
                 btnMover.Enabled = true;
-                simulacion.Reiniciar();
-                enConflicto = false;
-                panelEspacioAereo.Invalidate();
-                bool hayConflictoNuevo = simulacion.PredecirConflicto();
-                if (hayConflictoNuevo == true)
-                {
-                    FormConflicto c = new FormConflicto();
-                    c.ShowDialog();
-                    if (c.ResolverConflicto == true)
-                        simulacion.DuplicarVelocidadVuelo1();
-                }
             }
-            else if (simulacionEstabaActiva == true)
+            FormCambiarVelocidad f = new FormCambiarVelocidad();
+            f.SetListaVuelos(ListaVuelos);
+            f.ShowDialog();
+            if (f.GetCambiosAceptados() == true)
             {
-                timerSimulacion.Start();
+                for (int i = 0; i < ListaVuelos.GetNumber(); i++)
+                {
+                    ListaVuelos.GetFlightPlan(i).Restart();
+                }
+
+                FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
+                if (hayConflicto != null)
+                {
+                    FormConflicto f1 = new FormConflicto();
+                    f1.SetListaConflictos(hayConflicto);
+                    f1.ShowDialog();
+                }
+                panelEspacioAereo.Invalidate();
             }
+
         }
     }
 }

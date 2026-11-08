@@ -21,7 +21,6 @@ namespace SimuladorDeWindowsForm
         {
             InitializeComponent();
         }
-
         private void FormParametros_Load(object sender, EventArgs e)
         {
 

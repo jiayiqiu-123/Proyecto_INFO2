@@ -13,13 +13,15 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormTablaVuelos : Form
     {
-        public FlightPlan p1;
-        public FlightPlan p2;
+        FlightPlanList ListaVuelos = new FlightPlanList();
         public FormTablaVuelos()
         {
             InitializeComponent();
         }
-
+        public void SetListaVuelos(FlightPlanList listaVuelos)
+        {
+            this.ListaVuelos = listaVuelos;
+        }
         private void FormTablaVuelos_Load(object sender, EventArgs e)
         {
             dgvVuelos.Columns.Clear();
@@ -28,30 +30,49 @@ namespace SimuladorDeWindowsForm
             dgvVuelos.Columns.Add("PosX", "Posición X");
             dgvVuelos.Columns.Add("PosY", "Posición Y");
 
-            if (p1 != null)
-            {
-                dgvVuelos.Rows.Add(p1.GetId(), p1.GetVelocidad().ToString("F2"), p1.GetCurrentPosition().GetX().ToString("F2"), p1.GetCurrentPosition().GetY().ToString("F2"));
-            }
+            // Permite la selección múltiple de filas
+            dgvVuelos.MultiSelect = true;
+            dgvVuelos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            if (p2 != null)
+            // Permite ver la fila seleccionada con un color
+            dgvVuelos.DefaultCellStyle.SelectionBackColor = Color.LightGoldenrodYellow;
+            dgvVuelos.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
-                dgvVuelos.Rows.Add(p2.GetId(), p2.GetVelocidad().ToString("F2"), p2.GetCurrentPosition().GetX().ToString("F2"), p2.GetCurrentPosition().GetY().ToString("F2"));
+                FlightPlan vuelo = ListaVuelos.GetFlightPlan(i);
+
+                if (vuelo == null)
+                    continue;
+
+                int fila = dgvVuelos.Rows.Add(
+                    vuelo.GetId(),
+                    vuelo.GetVelocidad().ToString("F2"),
+                    vuelo.GetCurrentPosition().GetX().ToString("F2"),
+                    vuelo.GetCurrentPosition().GetY().ToString("F2"));
+
+                // Guardamos la fila seleccionada
+                dgvVuelos.Rows[fila].Tag = vuelo;
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Comprobamos que el clic sea en una fila y no en la cabecera (e.RowIndex >= 0)
-            if (e.RowIndex >= 0 && p1 != null && p2 != null)
-            {
-                // Calculamos la distancia usando el método Distance que está en el FlightPlan
-                double dist = p1.Distance(p2);
+            if (e.RowIndex < 0 || dgvVuelos.SelectedRows.Count != 2)
+                return;
 
-                // Abrimos FormDistancia y le asignamos el texto directo al label público
-                FormDistancia fDist = new FormDistancia();
-                fDist.labelDistancia.Text = "La distancia entre " + p1.GetId() + " y " + p2.GetId() + " es: " + dist.ToString("F2") + " km";
-                fDist.ShowDialog();
-            }
+            FlightPlan vuelo1 = dgvVuelos.SelectedRows[0].Tag as FlightPlan;
+            FlightPlan vuelo2 = dgvVuelos.SelectedRows[1].Tag as FlightPlan;
+
+            if (vuelo1 == null || vuelo2 == null)
+                return;
+
+            double distancia = vuelo1.Distance(vuelo2);
+
+            FormDistancia formulario = new FormDistancia();
+            string a ="La distancia entre " + vuelo1.GetId() + " y " + vuelo2.GetId() + " es: " + distancia.ToString("F2") + " km";
+            formulario.SetText(a);
+            formulario.ShowDialog();
         }
 
         private void dgvVuelos_CellContentClick(object sender, DataGridViewCellEventArgs e)

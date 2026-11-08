@@ -13,15 +13,25 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormInformacionAvion : Form
     {
+        FlightPlan vuelo;
         public FormInformacionAvion()
         {
             InitializeComponent();
         }
 
-        public FormInformacionAvion(FlightPlan vuelo)
+        public void SetVuelo(FlightPlan vuelo)
         {
-            InitializeComponent();
+            this.vuelo = vuelo;
+        }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void FormInformacionAvion_Load(object sender, EventArgs e)
+        {
+            if (vuelo == null)
+                return;
             Position actual = vuelo.GetCurrentPosition();
             Position destino = vuelo.GetFinalPosition();
 
@@ -30,9 +40,6 @@ namespace SimuladorDeWindowsForm
                 "Velocidad: " + vuelo.GetVelocidad() + "\n" +
                 "Posición actual: (" + actual.GetX() + ", " + actual.GetY() + ")\n" +
                 "Destino: (" + destino.GetX() + ", " + destino.GetY() + ")";
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
         }
     }
 }

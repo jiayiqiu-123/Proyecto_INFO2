@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace FlightLib
 {
@@ -17,7 +18,9 @@ namespace FlightLib
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
         double velocidad;
-
+        double velocidadoriginal;
+        Color color;
+        static readonly Random generadorAleatorio = new Random();
         // CONSTRUCTORES (através de parámetros pone atributos)
         // un constructor es un método especial que se llama igual que la clase y sirve para inicializar los atributos de la clase que les hemos pasado como parametro
         // el constructor lo que hace es ""montar"" el objeto, es decir, crear el objeto con los atributos que le pasamos para que esten ordenados como queramos
@@ -32,7 +35,9 @@ namespace FlightLib
             this.initialPosition = new Position(cpx, cpy);
             this.currentPosition = new Position(cpx, cpy);
             this.finalPosition = new Position(fpx, fpy);
+            this.velocidadoriginal = velocidad;
             this.velocidad = velocidad;
+            this.color = Color.Empty;
         }
 
         // METODOS (funciones)
@@ -51,8 +56,14 @@ namespace FlightLib
         public Position GetFinalPosition()
         { return finalPosition; }
 
+        public double GetVelocidadOriginal()
+        { return velocidadoriginal; }
+
         public double GetVelocidad()
         { return velocidad; }
+
+        public Color GetColor()
+        { return color; }
 
 
         // SETTERS
@@ -70,6 +81,20 @@ namespace FlightLib
         // Setter del atributo velocidad
         // es de tipo void porque no devuelve nada
         { this.velocidad = velocidad; }
+
+        public void SetRandomColor()
+        {
+            if (this.color == Color.Empty)
+            {
+                Color color = Color.FromArgb(
+                    generadorAleatorio.Next(40, 221),
+                    generadorAleatorio.Next(40, 221),
+                    generadorAleatorio.Next(40, 221));
+
+                this.color = color;
+            }
+
+        }
 
         ///////////////////////////////////////////////////
 
@@ -115,21 +140,13 @@ namespace FlightLib
             return resultado;
         }
 
-
-        //!!HACER UN METODO QUE DETECTE EL CONFLICTO CUANDO 2 VUELOS ESTAN MÁS CERCANOS
-        public bool Conflicto(FlightPlan b, double distanciaSeguridad)
-        {
-            bool conflicto = false;
-            double distanciaEntreCentros = this.currentPosition.Distancia(b.currentPosition);
-            double distanciaParaConflicto = distanciaSeguridad * 2;
-            if (distanciaEntreCentros <= distanciaParaConflicto)
-            // el this es el plan a porque es el  que llama, el b es el que hemos puesto como parametro, el que le pasamos, el vuelo b
-                conflicto = true;
-            return conflicto;
-        }
-
         public void Restart()
         { currentPosition = initialPosition; }
+
+        public void RestaurarVelocidadesOriginales()
+        {
+            this.SetVelocidad(this.GetVelocidadOriginal());
+        }
 
         public double Distance(FlightPlan plan)
         {

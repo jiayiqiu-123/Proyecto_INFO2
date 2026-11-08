@@ -16,9 +16,15 @@ namespace SimuladorDeWindowsForm
         // Variables públicas donde se guardan los dos objetos FlightPlan
         public FlightPlan p1;
         public FlightPlan p2;
+        FlightPlanList ListaVuelos = new FlightPlanList();
         public FormPlanesDeVuelo()
         {
             InitializeComponent();
+        }
+
+        public FlightPlanList GetFlightPlanList()
+        {
+            return ListaVuelos;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,9 +42,9 @@ namespace SimuladorDeWindowsForm
 
         }
 
+        // Botón aceptar --- ESTA PARTE SE PUEDE SIMPLIFICAR CON UN BUCLE EN LAS SIGUIENTES VERSIONES!!!IMP
         private void button1_Click(object sender, EventArgs e)
         {
-        // Botón aceptar
             // Comprobar que ningún campo esté vacío
             if (txtid1.Text == "" || txtx1.Text == "" || txty1.Text == "" ||
                 txtx1F.Text == "" || txty1F.Text == "" || txtVel1.Text == "" ||
@@ -83,7 +89,8 @@ namespace SimuladorDeWindowsForm
                         // Crear los dos objetos con tu clase FlightPlan
                         p1 = new FlightPlan(txtid1.Text, xIni1, yIni1, xFin1, yFin1, vel1);
                         p2 = new FlightPlan(txtid2.Text, xIni2, yIni2, xFin2, yFin2, vel2);
-
+                        int resultado = ListaVuelos.AddFlightPlan(p1);
+                        resultado = ListaVuelos.AddFlightPlan(p2);
                         // Cerrar la ventana tras guardarlos
                         this.Close();
                     }
