@@ -102,7 +102,6 @@ namespace SimuladorDeWindowsForm
                     {
                         graphics.FillEllipse(brochaPunto, x + 6 - radioPunto, y + 6 - radioPunto, radioPunto * 2, radioPunto * 2);
                     }
-
                 }
             }
         }

@@ -165,7 +165,10 @@ namespace FlightLib
                 }
             }
 
-            return vuelosEnConflicto.GetNumber() == 0 ? null : vuelosEnConflicto;
+            if (vuelosEnConflicto.GetNumber() == 0)
+                return null;
+            else
+                return vuelosEnConflicto;
         }
 
         // Método auxiliar: comprueba si un vuelo ya está en la lista
@@ -192,9 +195,7 @@ namespace FlightLib
                     double dist = vuelo1.Distance(vuelo2);
 
                     if (dist <= distanciaSeguridad * 2)
-                    {
                         return true;
-                    }
                 }
             }
             return false;

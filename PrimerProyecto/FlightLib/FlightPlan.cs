@@ -150,9 +150,9 @@ namespace FlightLib
 
         public double Distance(FlightPlan plan)
         {
-            double two_plans_distance = this.currentPosition.Distancia(plan.currentPosition);
+            double twoPlansDistance = this.currentPosition.Distancia(plan.currentPosition);
             // este método lo que hace es coger la currentposition y hacer la distancia respecto a otro plan de vuelo "plan" que será un parámetro que le daremos
-            return two_plans_distance;
+            return twoPlansDistance;
         }
 
 
@@ -162,7 +162,7 @@ namespace FlightLib
             Console.WriteLine("******************************");
             Console.WriteLine("Datos del vuelo: ");
             Console.WriteLine("Identificador: {0}", id);
-            // !!buscar como escribir datos reales con solo 2 decimales (F2, fload de 2 decimales)
+            // !!buscar como escribir datos reales con solo 2 decimales (F2, float de 2 decimales)
             Console.WriteLine("Velocidad: {0:F2}", velocidad);
             Console.WriteLine("Posición actual: ({0:F2},{1:F2})", currentPosition.GetX(), currentPosition.GetY());
             if (this.HasArrived())

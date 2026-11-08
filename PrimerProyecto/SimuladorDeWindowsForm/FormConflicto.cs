@@ -30,13 +30,13 @@ namespace SimuladorDeWindowsForm
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnResolver_Click(object sender, EventArgs e)
         {
             ListaConflictos.ResolverConflictos();
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSinResolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }

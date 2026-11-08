@@ -52,8 +52,7 @@ namespace SimuladorDeWindowsForm
                 MessageBox.Show("Parámetros guardados.");
             }
         }
-
-        private void espacióAerioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void espacioAéreoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
@@ -69,14 +68,12 @@ namespace SimuladorDeWindowsForm
                 MessageBox.Show("Primero introduce el tiempo del ciclo.");
                 return;
             }
-
             FormSimulacion formulario = new FormSimulacion();
             formulario.SetDSeguridad(distanciaSeguridad);
             formulario.SetTiempoCiclo(tiempoCiclo);
             formulario.SetListaVuelos(ListaVuelos);
             formulario.ShowDialog();
         }
-
         private void btnPruebas_Click(object sender, EventArgs e)
         {
             ListaVuelos = new FlightPlanList();

@@ -51,16 +51,18 @@ namespace SimuladorDeWindowsForm
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            double v;
             for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
                 string texto = Convert.ToString(tablaVuelos.Rows[i].Cells[2].Value);
-
-                if (double.TryParse(texto, out double v) && v > 0)
+                if (double.TryParse(texto, out v))
                 {
-                    ListaVuelos.GetFlightPlan(i).SetVelocidad(v);
+                    if (v > 0)
+                    {
+                        ListaVuelos.GetFlightPlan(i).SetVelocidad(v);
+                    }
                 }
             }
-
             CambiosAceptados = true;
             this.Close();
         }
