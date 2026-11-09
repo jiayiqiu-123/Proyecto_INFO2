@@ -27,6 +27,8 @@ namespace SimuladorDeWindowsForm
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            FormUser f = new FormUser();
+            f.ShowDialog();
 
         }
 
