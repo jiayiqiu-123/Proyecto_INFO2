@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +14,15 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormConflicto : Form
     {
-        public bool ResolverConflicto = false;
+        FlightPlanList ListaConflictos = new FlightPlanList();
         public FormConflicto()
         {
             InitializeComponent();
+        }
+
+        public void SetListaConflictos(FlightPlanList listaConflictos)
+        {
+            this.ListaConflictos = listaConflictos;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -24,13 +30,13 @@ namespace SimuladorDeWindowsForm
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnResolver_Click(object sender, EventArgs e)
         {
-            ResolverConflicto = true;
+            ListaConflictos.ResolverConflictos();
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSinResolver_Click(object sender, EventArgs e)
         {
             this.Close();
         }

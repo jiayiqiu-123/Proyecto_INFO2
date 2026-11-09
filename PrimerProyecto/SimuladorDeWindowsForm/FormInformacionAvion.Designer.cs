@@ -49,6 +49,7 @@
             this.Controls.Add(this.lblInformacion);
             this.Name = "FormInformacionAvion";
             this.Text = "FormInformacionAvion";
+            this.Load += new System.EventHandler(this.FormInformacionAvion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

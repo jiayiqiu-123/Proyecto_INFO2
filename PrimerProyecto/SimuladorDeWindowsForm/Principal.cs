@@ -14,6 +14,7 @@ namespace SimuladorDeWindowsForm
     public partial class Principal : Form
     {
         // Variables donde se guardan los datos introducidos
+        FlightPlanList ListaVuelos;
         FlightPlan vuelo1;
         FlightPlan vuelo2;
         float distanciaSeguridad;
@@ -35,64 +36,65 @@ namespace SimuladorDeWindowsForm
         private void menuPlanesDeVueloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormPlanesDeVuelo f = new FormPlanesDeVuelo();
-            f.ShowDialog(); // Abre la ventana y espera a que se cierre
-
-            // Si se crearon correctamente los vuelos, los guardamos aquí
-            if (f.p1 != null && f.p2 != null)
-            {
-                vuelo1 = f.p1;
-                vuelo2 = f.p2;
-                MessageBox.Show("Planes de vuelo guardados.");
-            }
+            f.ShowDialog(); 
+            ListaVuelos = f.GetFlightPlanList();
         }
 
         private void parámetrosDeSeguridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormParametros f = new FormParametros();
             f.ShowDialog();
-
             // Si los datos son válidos, los guardamos aquí
-            if (f.distSeguridad > 0 && f.tiempoCiclo > 0)
+            if (f.GetDistSeguridad() > 0 && f.GetTiempoCiclo() > 0)
             {
                 distanciaSeguridad = f.GetDistSeguridad();
                 tiempoCiclo = f.GetTiempoCiclo();
+                ListaVuelos.SetDistanciaSegurdad(distanciaSeguridad);
+                ListaVuelos.SetTiempoCiclo(tiempoCiclo);
                 MessageBox.Show("Parámetros guardados.");
             }
         }
-
-        private void espacióAerioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void espacioAéreoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vuelo1 == null || vuelo2 == null)
+            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
-                MessageBox.Show("Primero introduce los planes de vuelo.");
-                return;
+                FlightPlan vuelo = ListaVuelos.GetFlightPlan(i);
+                if (vuelo == null)
+                {
+                    MessageBox.Show("Primero introduce los planes de vuelo.");
+                    return;
+                }
             }
             if (tiempoCiclo <= 0)
             {
                 MessageBox.Show("Primero introduce el tiempo del ciclo.");
                 return;
             }
-
-            FormSimulacion formulario = new FormSimulacion(vuelo1, vuelo2, tiempoCiclo);
+            FormSimulacion formulario = new FormSimulacion();
             formulario.SetDSeguridad(distanciaSeguridad);
             formulario.SetTiempoCiclo(tiempoCiclo);
-            formulario.CrearSimulacion();
-
+            formulario.SetListaVuelos(ListaVuelos);
             formulario.ShowDialog();
         }
-
         private void btnPruebas_Click(object sender, EventArgs e)
         {
+            ListaVuelos = new FlightPlanList();
             vuelo1 = new FlightPlan("VLG1234", 50, 100, 500, 300, 10);
             vuelo2 = new FlightPlan("IBE1234", 50, 300, 500, 100, 10);
+
+            int resultado = ListaVuelos.AddFlightPlan(vuelo1);
+            int resultado2 = ListaVuelos.AddFlightPlan(vuelo2);
+
             distanciaSeguridad = 20;
             tiempoCiclo = 1;
-            FormSimulacion formulario = new FormSimulacion(vuelo1, vuelo2, tiempoCiclo);
+            ListaVuelos.SetDistanciaSegurdad(distanciaSeguridad);
+            ListaVuelos.SetTiempoCiclo(tiempoCiclo);
 
+
+            FormSimulacion formulario = new FormSimulacion();
             formulario.SetDSeguridad(distanciaSeguridad);
             formulario.SetTiempoCiclo(tiempoCiclo);
-            formulario.CrearSimulacion();
-
+            formulario.SetListaVuelos(ListaVuelos);
             formulario.ShowDialog();
         }
     }
