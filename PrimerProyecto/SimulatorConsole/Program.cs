@@ -84,6 +84,8 @@ namespace SimulatorConsole
                 int ciclos = 100;
                 int tiempoCiclo = 10;
                 double distanciaSeguridad = 10;
+                lista.SetTiempoCiclo(tiempoCiclo);
+                lista.SetDistanciaSegurdad((float)distanciaSeguridad);
 
                 int i = 0;
                 while (i < ciclos)
@@ -91,11 +93,11 @@ namespace SimulatorConsole
                     // leen todo, lo mueven y lo muestran después
                     // (2) estamos cambiando la forma de mover los planes de vuelo, ahora lo hacemos desde la lista
                     // ahora el programa principal no tiene que saber cuantos planes de vuelo hay
-                    lista.Mover(tiempoCiclo);
+                    lista.MoverTodosVuelos();
 
                     lista.EscribeConsola();
 
-                    if (plan_a.Conflicto(plan_b, distanciaSeguridad))
+                    if (lista.HayConflictoTiempoReal())
                         Console.WriteLine("¡Conflicto detectado!");
                     i = i + 1;
                 }

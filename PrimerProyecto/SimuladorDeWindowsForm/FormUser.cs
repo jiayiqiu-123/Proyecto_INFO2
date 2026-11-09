@@ -16,5 +16,15 @@ namespace SimuladorDeWindowsForm
         {
             InitializeComponent();
         }
+
+        private void buttonSignIn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonSignUp_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

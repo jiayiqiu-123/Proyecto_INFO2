@@ -38,12 +38,11 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBoxUsername.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.textBoxUsername.Location = new System.Drawing.Point(165, 138);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(484, 22);
             this.textBoxUsername.TabIndex = 0;
-            this.textBoxUsername.Text = "Introduce Username";
             // 
             // labelUsername
             // 
@@ -65,12 +64,11 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBoxPassword.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.textBoxPassword.Location = new System.Drawing.Point(165, 193);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(484, 22);
             this.textBoxPassword.TabIndex = 3;
-            this.textBoxPassword.Text = "Introduce Password";
             // 
             // buttonSignIn
             // 
@@ -80,6 +78,7 @@
             this.buttonSignIn.TabIndex = 4;
             this.buttonSignIn.Text = "Sign in";
             this.buttonSignIn.UseVisualStyleBackColor = true;
+            this.buttonSignIn.Click += new System.EventHandler(this.buttonSignIn_Click);
             // 
             // buttonSignUp
             // 
@@ -89,6 +88,7 @@
             this.buttonSignUp.TabIndex = 5;
             this.buttonSignUp.Text = "Sign up";
             this.buttonSignUp.UseVisualStyleBackColor = true;
+            this.buttonSignUp.Click += new System.EventHandler(this.buttonSignUp_Click);
             // 
             // FormUser
             // 
