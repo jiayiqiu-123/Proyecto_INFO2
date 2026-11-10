@@ -70,6 +70,12 @@
     <Compile Include="FormInformacionAvion.Designer.cs">
       <DependentUpon>FormInformacionAvion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNombrarTXT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNombrarTXT.Designer.cs">
+      <DependentUpon>FormNombrarTXT.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormParametros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     <EmbeddedResource Include="FormInformacionAvion.resx">
       <DependentUpon>FormInformacionAvion.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNombrarTXT.resx">
+      <DependentUpon>FormNombrarTXT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormParametros.resx">
       <DependentUpon>FormParametros.cs</DependentUpon>

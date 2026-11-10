@@ -4,6 +4,8 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
 
 namespace FlightLib
 {
@@ -213,7 +215,30 @@ namespace FlightLib
                 }
             }
         }
+        public void GuardarEnArchivo(string ruta)
+        {
+            using (StreamWriter sw = new StreamWriter(ruta))
+            {
+                for (int i = 0; i < number; i++)
+                {
+                    FlightPlan v = vector[i];
+                    Position ini = v.GetInitialPosition();
+                    Position fin = v.GetFinalPosition();
+                    Position act = v.GetCurrentPosition();
 
+                    string linea = string.Join(" ",
+                        v.GetId(),
+                        act.GetX().ToString(CultureInfo.InvariantCulture),
+                        act.GetY().ToString(CultureInfo.InvariantCulture),
+                        fin.GetX().ToString(CultureInfo.InvariantCulture),
+                        fin.GetY().ToString(CultureInfo.InvariantCulture),
+                        v.GetVelocidad().ToString(CultureInfo.InvariantCulture));
+
+
+                    sw.WriteLine(linea);
+                }
+            }
+        }
         public void EscribeConsola()
         {
             int i = 0;

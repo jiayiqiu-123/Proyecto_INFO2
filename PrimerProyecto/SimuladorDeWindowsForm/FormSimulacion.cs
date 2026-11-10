@@ -280,5 +280,19 @@ namespace SimuladorDeWindowsForm
             }
 
         }
+
+        private void GuardarFlightPlanList_Click(object sender, EventArgs e)
+        {
+            if (timerSimulacion.Enabled == true)
+            {
+                timerSimulacion.Stop();
+                btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+                btnMover.Enabled = true;
+            }
+            FormNombrarTXT f = new FormNombrarTXT();
+            f.SetFlightPlanList(ListaVuelos);
+            f.ShowDialog();
+
+        }
     }
 }
