@@ -19,6 +19,8 @@ namespace SimuladorDeWindowsForm
         bool enConflicto = false;
         // esto me servirá como variable para el conflicto, en el buttonPredicción
 
+        
+
         public FormSimulacion()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace SimuladorDeWindowsForm
         {
             this.ListaVuelos = listaVuelos;
         }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
@@ -119,6 +122,9 @@ namespace SimuladorDeWindowsForm
                 ListaVuelos.GetFlightPlan(i).Restart();
                 ListaVuelos.GetFlightPlan(i).RestaurarVelocidadesOriginales();
             }
+
+            ListaVuelos.LimpiarHistorial();
+            buttonDeshacer.Enabled = false; // Limpiar el historial de estados anteriores al cargar la simulación
             panelEspacioAereo.Invalidate();
 
                     FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
@@ -133,7 +139,9 @@ namespace SimuladorDeWindowsForm
         }
         private void btnMover_Click(object sender, EventArgs e)
         {
+           
             ListaVuelos.MoverTodosVuelos();
+            buttonDeshacer.Enabled = ListaVuelos.PuedeDeshacer();
             enConflicto = ListaVuelos.HayConflictoTiempoReal();
             panelEspacioAereo.Invalidate();
         }
@@ -200,7 +208,9 @@ namespace SimuladorDeWindowsForm
             }
             else
             {
+        
                 ListaVuelos.MoverTodosVuelos();
+                buttonDeshacer.Enabled = ListaVuelos.PuedeDeshacer();
                 enConflicto = ListaVuelos.HayConflictoTiempoReal();
                 panelEspacioAereo.Invalidate();
             }
@@ -240,6 +250,8 @@ namespace SimuladorDeWindowsForm
                 ListaVuelos.GetFlightPlan(i).Restart();
                 ListaVuelos.GetFlightPlan(i).RestaurarVelocidadesOriginales();
             }
+            ListaVuelos.LimpiarHistorial();
+            buttonDeshacer.Enabled = false; // Limpiar el historial de estados anteriores al reiniciar la simulación
             panelEspacioAereo.Invalidate();
             FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
             if (hayConflicto != null)
@@ -268,7 +280,8 @@ namespace SimuladorDeWindowsForm
                 {
                     ListaVuelos.GetFlightPlan(i).Restart();
                 }
-
+                ListaVuelos.LimpiarHistorial();
+                buttonDeshacer.Enabled = false; // Limpiar el historial de estados anteriores al cambiar la velocidad
                 FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
                 if (hayConflicto != null)
                 {
@@ -294,5 +307,27 @@ namespace SimuladorDeWindowsForm
             f.ShowDialog();
 
         }
+
+        private void buttonDeshacer_Click(object sender, EventArgs e)
+        {
+            // Comprueba si la simulación automática(el temporizador) está en marcha.
+            // Si está encendida, la detiene para que los aviones no sigan avanzando solos al deshacer.
+            if (timerSimulacion.Enabled) 
+            {
+                timerSimulacion.Stop();
+                btnSimulacionAutomatica.Text = "Iniciar simulación automática";
+                btnMover.Enabled = true; // Activa el botón de deshacer si hay un estado anterior disponible
+            }
+            if (ListaVuelos.PuedeDeshacer()) // Comprobar si hay estados anteriores en la pila
+            {
+                ListaVuelos.DeshacerPaso();
+                enConflicto = ListaVuelos.HayConflictoTiempoReal();
+                panelEspacioAereo.Invalidate();
+                buttonDeshacer.Enabled = ListaVuelos.PuedeDeshacer(); // Comprueba si quedan más pasos en la pila; si ya no quedan (devuelve false), desactiva el botón Deshacer
+            }
+        }
     }
 }
+
+
+

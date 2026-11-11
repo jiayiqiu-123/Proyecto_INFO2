@@ -49,7 +49,7 @@ namespace SimuladorDeWindowsForm
             {
                 distanciaSeguridad = f.GetDistSeguridad();
                 tiempoCiclo = f.GetTiempoCiclo();
-                ListaVuelos.SetDistanciaSegurdad(distanciaSeguridad);
+                ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
                 ListaVuelos.SetTiempoCiclo(tiempoCiclo);
                 MessageBox.Show("Parámetros guardados.");
             }
@@ -87,7 +87,7 @@ namespace SimuladorDeWindowsForm
 
             distanciaSeguridad = 20;
             tiempoCiclo = 1;
-            ListaVuelos.SetDistanciaSegurdad(distanciaSeguridad);
+            ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
             ListaVuelos.SetTiempoCiclo(tiempoCiclo);
 
 

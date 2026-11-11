@@ -170,6 +170,24 @@ namespace FlightLib
                 Console.WriteLine("Hemos llegado a nuestro destino");
             Console.WriteLine("******************************");
         }
+
+        public FlightPlan Clonar()
+        {
+            // Crea una copia del objeto FlightPlan actual
+            FlightPlan copia = new FlightPlan
+            (
+                this.id,
+                this.initialPosition.GetX(),
+                this.initialPosition.GetY(),
+                this.finalPosition.GetX(),
+                this.finalPosition.GetY(),
+                this.velocidadoriginal
+            );
+            copia.SetVelocidad(this.velocidad);
+            copia.SetCurrentPosition(this.currentPosition.Clonar());
+            copia.color = this.color;
+            return copia;
+        }
     }
 }
 

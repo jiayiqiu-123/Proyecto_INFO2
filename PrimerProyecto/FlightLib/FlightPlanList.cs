@@ -23,7 +23,7 @@ namespace FlightLib
             return number;
         }
 
-        public void SetDistanciaSegurdad(float d)
+        public void SetDistanciaSeguridad(float d)
         {
             this.distanciaSeguridad = d;
         }
@@ -60,6 +60,7 @@ namespace FlightLib
 
         public void MoverTodosVuelos()
         {
+            GuardarEstadoAnterior();
             int i = 0;
             while (i < number)
             {
@@ -250,5 +251,59 @@ namespace FlightLib
             }
         }
 
+        public FlightPlanList Clonar()
+        {
+            // Crea una copia del objeto FlightPlanList actual (distancia de seguridad, tiempo de ciclo y cada vuelo clonado individualmente).
+            FlightPlanList copia = new FlightPlanList();
+            copia.SetDistanciaSeguridad(this.distanciaSeguridad);
+            copia.SetTiempoCiclo(this.tiempoCiclo);
+
+            for (int i = 0; i < this.number; i++)
+            {
+                FlightPlan vueloOriginal = this.vector[i];
+                FlightPlan vueloClonado = vueloOriginal.Clonar();
+                copia.AddFlightPlan(vueloClonado);
+            }
+            return copia;
+        }
+
+        /// Pila que guarda las copias de estados anteriores para poder deshacer pasos
+        Stack<FlightPlan[]> historialEstadosVuelo = new Stack<FlightPlan[]>();
+
+        // Devuelve 'true' si hay al menos un estado guardado en la pila al que poder retroceder, o 'false' si la pila está vacía (sirve para activar o desactivar el botón Deshacer).
+        public bool PuedeDeshacer()
+        {
+            return historialEstadosVuelo.Count > 0;
+        }
+
+        // Crea una copia independiente del array actual de vuelos (vector) y la guarda en la pila antes de que los aviones avancen al siguiente paso.
+        public void GuardarEstadoAnterior()
+        {
+            // Creamos un nuevo array vacío de 10 posiciones para no sobrescribir el original
+            FlightPlan[] copiaVector = new FlightPlan[10];
+            for (int i = 0; i < number; i++)
+            {
+                copiaVector[i] = vector[i].Clonar();
+            }
+            // Metemos la copia completa en la cima de la pila
+            historialEstadosVuelo.Push(copiaVector);
+        }
+
+        // Retrocede un paso extrayendo de la pila el último array de vuelos guardado y reemplazando el array actual (vector) por esa copia anterior.
+        public void DeshacerPaso()
+        {
+            // Comprobamos que la pila no esté vacía antes de extraer para evitar errores
+            if (historialEstadosVuelo.Count > 0)
+            {
+                vector = historialEstadosVuelo.Pop();
+            }
+        }
+
+        public void LimpiarHistorial()
+        {
+            // Vaciar la pila de estados anteriores 
+            historialEstadosVuelo.Clear();
+            
+        }
     }
 }

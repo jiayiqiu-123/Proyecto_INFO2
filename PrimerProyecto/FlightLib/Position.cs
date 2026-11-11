@@ -36,5 +36,11 @@ namespace FlightLib
             double resultado = Math.Sqrt((x - b.x) * (x - b.x) + (y - b.y) * (y - b.y));
             return resultado;
         }
+
+        public Position Clonar()
+        // retorna una copia de la posición actual
+        {
+            return new Position(this.x, this.y);
+        }
     }
 }
