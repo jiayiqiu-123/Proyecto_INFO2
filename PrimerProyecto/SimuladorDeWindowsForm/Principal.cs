@@ -14,7 +14,7 @@ namespace SimuladorDeWindowsForm
     public partial class Principal : Form
     {
         // Variables donde se guardan los datos introducidos
-        FlightPlanList ListaVuelos;
+        FlightPlanList ListaVuelos = new FlightPlanList();
         FlightPlan vuelo1;
         FlightPlan vuelo2;
         float distanciaSeguridad;
@@ -135,8 +135,8 @@ namespace SimuladorDeWindowsForm
                     // la lista de vuelos cargada desde el fichero es válida
                     ListaVuelos = listacargada;
                     // parámetros de seguridad por defecto, si no se han cargado desde el fichero? (REVISAR)
-                    // ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
-                    // ListaVuelos.SetTiempoCiclo(tiempoCiclo);
+                    ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
+                    ListaVuelos.SetTiempoCiclo(tiempoCiclo);
                     MessageBox.Show("Planes de vuelo cargados desde el fichero.");
                 }
 
