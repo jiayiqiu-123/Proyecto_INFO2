@@ -240,6 +240,67 @@ namespace FlightLib
                 }
             }
         }
+
+        public FlightPlanList CargaDeFichero(string ruta)
+        {
+            // lista donde se guardarán los vuelos cargados desde el archivo
+            FlightPlanList listafichero = new FlightPlanList();
+            // creamos un StreamReader para leer el archivo línea por línea, pero primero lo declaramos nulo para poder cerrarlo en los catch que haremos después
+            StreamReader r = null;
+
+            try
+            {
+                //abrir archivo + primera linea --> ESTRUCTURA BÁSICA
+                r = new StreamReader(ruta);
+                string linea = r.ReadLine();
+
+                while (linea != null)
+                {
+                    //vector
+                    string[] trozos = linea.Split(' ');
+                    string id = trozos[0];
+                    double posx_inicial = Convert.ToDouble(trozos[1], CultureInfo.InvariantCulture);
+                    double posy_inicial = Convert.ToDouble(trozos[2], CultureInfo.InvariantCulture);
+                    double posx_final = Convert.ToDouble(trozos[3], CultureInfo.InvariantCulture);
+                    double posy_final = Convert.ToDouble(trozos[4], CultureInfo.InvariantCulture);
+                    double velocidad = Convert.ToDouble(trozos[5], CultureInfo.InvariantCulture);
+
+                    //creamos el vuelo y lo añadimos a la lista
+                    FlightPlan vuelo = new FlightPlan(id, posx_inicial, posy_inicial, posx_final, posy_final, velocidad);
+                    // añadimos el vuelo a la lista de vuelos cargados desde el archivo
+                    listafichero.AddFlightPlan(vuelo);
+
+                    //leemos la siguente línea
+                    linea = r.ReadLine();
+                }
+
+                // SIEMPRE CERRAR el fichero y devolver la lista de vuelos "llena"
+                r.Close();
+                return listafichero;
+            }
+
+            catch (FormatException)
+            {
+                // algún número del fichero tiene letras en vez de números por ejemplo
+                r.Close();
+                return null;
+            }
+
+            catch (FileNotFoundException)
+            {
+                // el fichero no existe (si ni se abre no hay que cerrarlo no?)
+                return null;
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                //a alguna linea le faltan datos (por ejemplo, no tiene 6 trozos)
+                r.Close();
+                return null;
+            }
+
+        }
+
         public void EscribeConsola()
         {
             int i = 0;

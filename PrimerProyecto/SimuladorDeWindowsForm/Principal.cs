@@ -101,5 +101,47 @@ namespace SimuladorDeWindowsForm
             formulario.SetListaVuelos(ListaVuelos);
             formulario.ShowDialog();
         }
+
+        private void cargarPlanesDeVueloDesdeFicheroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // para abrir el explorador de archivos y seleccionar el fichero
+            OpenFileDialog dialogo = new OpenFileDialog();
+            // titulo de la ventana
+            dialogo.Title = "Selecciona el fichero de planes de vuelo";
+            // tipos de fichero que se pueden elegir (texto a mostrar | filtro)
+            dialogo.Filter = "Ficheros de texto (*.txt)|*.txt|Todos los ficheros (*.*)|*.*";
+            // se muestra el explorador y se comprueba si ha pulsado "abrir"/"aceptar" (no cancelar)
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                // se obtiene la ruta del fichero seleccionado
+                string rutaFichero = dialogo.FileName;
+                // se lee el fichero y nos devuelve la lista con los vuelos cargados usando el método que hemos hecho en FlightPlanList
+                FlightPlanList listacargada = ListaVuelos.CargaDeFichero(rutaFichero);
+
+                if (listacargada == null)
+                {
+                    // mensaje general de que el fichero está mal escrito o no existe
+                    MessageBox.Show("No se ha podido cargar el fichero. Compruebe que el formato y información sea el correcto");
+                }
+
+                else if (listacargada.GetNumber() == 0)
+                {
+                    // wl fichero no tiene ningún vuelo a cargar, si se abre pero no hay nada dentro, devolviendo una lista vacía
+                    MessageBox.Show("El fichero está vacío.");
+                }
+
+                else
+                {
+                    // la lista de vuelos cargada desde el fichero es válida
+                    ListaVuelos = listacargada;
+                    // parámetros de seguridad por defecto, si no se han cargado desde el fichero? (REVISAR)
+                    // ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
+                    // ListaVuelos.SetTiempoCiclo(tiempoCiclo);
+                    MessageBox.Show("Planes de vuelo cargados desde el fichero.");
+                }
+
+            }
+
+        }
     }
 }
