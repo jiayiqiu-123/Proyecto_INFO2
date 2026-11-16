@@ -85,7 +85,7 @@ namespace SimulatorConsole
                 int tiempoCiclo = 10;
                 double distanciaSeguridad = 10;
                 lista.SetTiempoCiclo(tiempoCiclo);
-                lista.SetDistanciaSegurdad((float)distanciaSeguridad);
+                lista.SetDistanciaSeguridad(distanciaSeguridad);
 
                 int i = 0;
                 while (i < ciclos)

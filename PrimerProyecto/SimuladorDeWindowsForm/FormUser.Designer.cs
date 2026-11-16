@@ -30,7 +30,7 @@
         {
             this.textBoxUsername = new System.Windows.Forms.TextBox();
             this.labelUsername = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.buttonSignIn = new System.Windows.Forms.Button();
             this.buttonSignUp = new System.Windows.Forms.Button();
@@ -43,6 +43,7 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(484, 22);
             this.textBoxUsername.TabIndex = 0;
+            this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
             // 
             // labelUsername
             // 
@@ -53,14 +54,14 @@
             this.labelUsername.TabIndex = 1;
             this.labelUsername.Text = "Username";
             // 
-            // label1
+            // labelPassword
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 174);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Password";
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(162, 174);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(67, 16);
+            this.labelPassword.TabIndex = 2;
+            this.labelPassword.Text = "Password";
             // 
             // textBoxPassword
             // 
@@ -69,6 +70,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(484, 22);
             this.textBoxPassword.TabIndex = 3;
+            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             // 
             // buttonSignIn
             // 
@@ -98,11 +100,13 @@
             this.Controls.Add(this.buttonSignUp);
             this.Controls.Add(this.buttonSignIn);
             this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.textBoxUsername);
             this.Name = "FormUser";
             this.Text = "FormUser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUser_FormClosing_1);
+            this.Load += new System.EventHandler(this.FormUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +116,7 @@
 
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Label labelUsername;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Button buttonSignIn;
         private System.Windows.Forms.Button buttonSignUp;

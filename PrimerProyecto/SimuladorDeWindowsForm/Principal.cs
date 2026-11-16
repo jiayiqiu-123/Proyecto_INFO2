@@ -28,9 +28,13 @@ namespace SimuladorDeWindowsForm
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            //se crea el formulario de usuario y se muestra hasta que se cierre
             FormUser f = new FormUser();
             f.ShowDialog();
-
+            //se le pregunta quién ha entrado; si nadie, se cierra el programa
+            if (f.GetUsuario() == "")
+                this.Close();
+            
         }
 
         private void menuPlanesDeVueloToolStripMenuItem_Click(object sender, EventArgs e)

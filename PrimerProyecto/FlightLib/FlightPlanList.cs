@@ -14,7 +14,7 @@ namespace FlightLib
         FlightPlan[] vector = new FlightPlan[10];
         int number = 0;
         //De momento consideramos, la distancia de seguridad no varia en los vuelos
-        float distanciaSeguridad;
+        double distanciaSeguridad = 0;
         double tiempoCiclo;
 
         // necesitamos un método para añadir un FlightPlan a la lista
@@ -23,7 +23,7 @@ namespace FlightLib
             return number;
         }
 
-        public void SetDistanciaSeguridad(float d)
+        public void SetDistanciaSeguridad(double d)
         {
             this.distanciaSeguridad = d;
         }
