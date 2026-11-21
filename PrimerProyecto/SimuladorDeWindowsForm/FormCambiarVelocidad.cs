@@ -51,20 +51,35 @@ namespace SimuladorDeWindowsForm
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            double v;
-            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
-            {
-                string texto = Convert.ToString(tablaVuelos.Rows[i].Cells[2].Value);
-                if (double.TryParse(texto, out v))
+            try
+            { 
+                double v;
+                for (int i = 0; i < ListaVuelos.GetNumber(); i++)
                 {
-                    if (v > 0)
+                    string texto = Convert.ToString(tablaVuelos.Rows[i].Cells[2].Value);
+
+                    if (texto != "")
                     {
-                        ListaVuelos.GetFlightPlan(i).SetVelocidad(v);
+                        int valor = Convert.ToInt32(texto);
+                        if (valor > 0)
+                        {
+                            ListaVuelos.GetFlightPlan(i).SetVelocidad(valor);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El número tiene que ser mayor que 0.");
+                            return;
+                        }
                     }
                 }
+                CambiosAceptados = true;
+                this.Close();
+
             }
-            CambiosAceptados = true;
-            this.Close();
+            catch (FormatException)
+            {
+                MessageBox.Show("Error: has puesto letras o un formato incorrecto. Pon solo números.");
+            }
         }
     }
 }

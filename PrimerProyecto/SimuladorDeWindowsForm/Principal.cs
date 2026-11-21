@@ -34,13 +34,13 @@ namespace SimuladorDeWindowsForm
             //se le pregunta quién ha entrado; si nadie, se cierra el programa
             if (f.GetUsuario() == "")
                 this.Close();
-            
+
         }
 
         private void menuPlanesDeVueloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormPlanesDeVuelo f = new FormPlanesDeVuelo();
-            f.ShowDialog(); 
+            f.ShowDialog();
             ListaVuelos = f.GetFlightPlanList();
         }
 
@@ -60,6 +60,13 @@ namespace SimuladorDeWindowsForm
         }
         private void espacioAéreoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Si no hay vuelos ni por fichero ni configurados manualmente, avisamos
+            if (ListaVuelos == null || ListaVuelos.GetNumber() == 0)
+            {
+                MessageBox.Show("No se puede acceder al espacio aéreo hasta que haya un archivo de flight plan seleccionado o planes de vuelo configurados.");
+                return;
+            }
+
             for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
                 FlightPlan vuelo = ListaVuelos.GetFlightPlan(i);
