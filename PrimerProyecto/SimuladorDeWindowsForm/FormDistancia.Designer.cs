@@ -28,35 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelDistancia = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelDistancia
+            // dataGridView1
             // 
-            this.labelDistancia.AutoSize = true;
-            this.labelDistancia.Location = new System.Drawing.Point(31, 34);
-            this.labelDistancia.Name = "labelDistancia";
-            this.labelDistancia.Size = new System.Drawing.Size(35, 13);
-            this.labelDistancia.TabIndex = 0;
-            this.labelDistancia.Text = "label1";
-            this.labelDistancia.Click += new System.EventHandler(this.labelDistancia_Click);
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(34, 50);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(386, 220);
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.labelTitulo.Location = new System.Drawing.Point(31, 30);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(244, 17);
+            this.labelTitulo.TabIndex = 2;
+            this.labelTitulo.Text = "Distancias con el vuelo seleccionado:";
             // 
             // FormDistancia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 85);
-            this.Controls.Add(this.labelDistancia);
+            this.ClientSize = new System.Drawing.Size(464, 323);
+            this.Controls.Add(this.labelTitulo);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "FormDistancia";
             this.Text = "FormDistancia";
             this.Load += new System.EventHandler(this.FormDistancia_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        public System.Windows.Forms.Label labelDistancia;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label labelTitulo;
     }
 }

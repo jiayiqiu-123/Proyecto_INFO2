@@ -99,7 +99,7 @@
             // 
             this.cargarPlanesDeVueloDesdeFicheroToolStripMenuItem.Name = "cargarPlanesDeVueloDesdeFicheroToolStripMenuItem";
             this.cargarPlanesDeVueloDesdeFicheroToolStripMenuItem.Size = new System.Drawing.Size(407, 34);
-            this.cargarPlanesDeVueloDesdeFicheroToolStripMenuItem.Text = "Cargar planes de vuelo desde fichero";
+            this.cargarPlanesDeVueloDesdeFicheroToolStripMenuItem.Text = "Cargar simulación desde fichero";
             this.cargarPlanesDeVueloDesdeFicheroToolStripMenuItem.Click += new System.EventHandler(this.cargarPlanesDeVueloDesdeFicheroToolStripMenuItem_Click);
             // 
             // Principal

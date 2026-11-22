@@ -76,9 +76,9 @@ namespace SimuladorDeWindowsForm
                     return;
                 }
             }
-            if (tiempoCiclo <= 0)
+            if (distanciaSeguridad <= 0 || tiempoCiclo <= 0)
             {
-                MessageBox.Show("Primero introduce el tiempo del ciclo.");
+                MessageBox.Show("Primero introduce la distancia de seguridad y el tiempo de ciclo.");
                 return;
             }
             FormSimulacion formulario = new FormSimulacion();
@@ -114,7 +114,7 @@ namespace SimuladorDeWindowsForm
             // para abrir el explorador de archivos y seleccionar el fichero
             OpenFileDialog dialogo = new OpenFileDialog();
             // titulo de la ventana
-            dialogo.Title = "Selecciona el fichero de planes de vuelo";
+            dialogo.Title = "Selecciona el fichero de estado de simulación";
             // tipos de fichero que se pueden elegir (texto a mostrar | filtro)
             dialogo.Filter = "Ficheros de texto (*.txt)|*.txt|Todos los ficheros (*.*)|*.*";
             // se muestra el explorador y se comprueba si ha pulsado "abrir"/"aceptar" (no cancelar)
@@ -141,10 +141,14 @@ namespace SimuladorDeWindowsForm
                 {
                     // la lista de vuelos cargada desde el fichero es válida
                     ListaVuelos = listacargada;
-                    // parámetros de seguridad por defecto, si no se han cargado desde el fichero? (REVISAR)
-                    ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
+                    if (ListaVuelos.GetDistanciaSeguridad() > 0)
+                        distanciaSeguridad = (float)ListaVuelos.GetDistanciaSeguridad();
+                    else
+                        ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
+                    if (ListaVuelos.GetTiempoCiclo() > 0)
+                        tiempoCiclo = ListaVuelos.GetTiempoCiclo();
                     ListaVuelos.SetTiempoCiclo(tiempoCiclo);
-                    MessageBox.Show("Planes de vuelo cargados desde el fichero.");
+                    MessageBox.Show("Estado de simulación cargado desde el fichero.");
                 }
 
             }

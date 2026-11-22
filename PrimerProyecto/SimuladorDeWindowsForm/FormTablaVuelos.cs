@@ -30,8 +30,8 @@ namespace SimuladorDeWindowsForm
             dgvVuelos.Columns.Add("PosX", "Posición X");
             dgvVuelos.Columns.Add("PosY", "Posición Y");
 
-            // Permite la selección múltiple de filas
-            dgvVuelos.MultiSelect = true;
+            // Permite seleccionar un único vuelo para consultar las distancias
+            dgvVuelos.MultiSelect = false;
             dgvVuelos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Permite ver la fila seleccionada con un color
@@ -58,20 +58,16 @@ namespace SimuladorDeWindowsForm
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || dgvVuelos.SelectedRows.Count != 2)
+            if (e.RowIndex < 0)
                 return;
 
-            FlightPlan vuelo1 = dgvVuelos.SelectedRows[0].Tag as FlightPlan;
-            FlightPlan vuelo2 = dgvVuelos.SelectedRows[1].Tag as FlightPlan;
-
-            if (vuelo1 == null || vuelo2 == null)
+            FlightPlan vueloSeleccionado = dgvVuelos.Rows[e.RowIndex].Tag as FlightPlan;
+            if (vueloSeleccionado == null)
                 return;
-
-            double distancia = vuelo1.Distance(vuelo2);
 
             FormDistancia formulario = new FormDistancia();
-            string a ="La distancia entre " + vuelo1.GetId() + " y " + vuelo2.GetId() + " es: " + distancia.ToString("F2") + " km";
-            formulario.SetText(a);
+            formulario.SetVueloSeleccionado(vueloSeleccionado);
+            formulario.SetListaVuelos(ListaVuelos);
             formulario.ShowDialog();
         }
 

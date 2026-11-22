@@ -55,6 +55,9 @@ namespace SimuladorDeWindowsForm
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
+            float escala = Math.Min((float)panelEspacioAereo.Width / 800, (float)panelEspacioAereo.Height / 550);
+            float margenX = (panelEspacioAereo.Width - 800 * escala) / 2;
+            float margenY = (panelEspacioAereo.Height - 550 * escala) / 2;
 
             for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
@@ -65,15 +68,15 @@ namespace SimuladorDeWindowsForm
                 }
                 else
                 {
-                    // Definir posiciones iniciales y finales de cada vuelo
+                    // Convertir las coordenadas del espacio aéreo al tamaño del panel.
                     Position posicion = vuelo.GetCurrentPosition();
-                    int x = (int)posicion.GetX();
-                    int y = (int)posicion.GetY();
+                    float x = margenX + Convert.ToSingle(posicion.GetX() + 6) * escala;
+                    float y = margenY + Convert.ToSingle(posicion.GetY() + 6) * escala;
 
-                    float OrigenX = Convert.ToSingle(vuelo.GetInitialPosition().GetX() + 6);
-                    float OrigenY = Convert.ToSingle(vuelo.GetInitialPosition().GetY() + 6);
-                    float FinalX = Convert.ToSingle(vuelo.GetFinalPosition().GetX() + 6);
-                    float FinalY = Convert.ToSingle(vuelo.GetFinalPosition().GetY() + 6);
+                    float OrigenX = margenX + Convert.ToSingle(vuelo.GetInitialPosition().GetX() + 6) * escala;
+                    float OrigenY = margenY + Convert.ToSingle(vuelo.GetInitialPosition().GetY() + 6) * escala;
+                    float FinalX = margenX + Convert.ToSingle(vuelo.GetFinalPosition().GetX() + 6) * escala;
+                    float FinalY = margenY + Convert.ToSingle(vuelo.GetFinalPosition().GetY() + 6) * escala;
 
                     // Asignar un color único a cada vuelo
                     vuelo.SetRandomColor();
@@ -83,9 +86,9 @@ namespace SimuladorDeWindowsForm
                         graphics.DrawLine(lapizTrayectoria, OrigenX, OrigenY, FinalX, FinalY);
                     }
 
-                    float diametro = dSeguridad * 2;
-                    float esquinaX = x + 6 - dSeguridad;
-                    float esquinaY = y + 6 - dSeguridad;
+                    float diametro = dSeguridad * 2 * escala;
+                    float esquinaX = x - dSeguridad * escala;
+                    float esquinaY = y - dSeguridad * escala;
 
                     using (Pen lapizSeguridad = new Pen(Color.OrangeRed, 1))
                     {
@@ -100,10 +103,10 @@ namespace SimuladorDeWindowsForm
                             graphics.FillEllipse(brochaConflicto, esquinaX, esquinaY, diametro, diametro);
                         }
                     }
-                    float radioPunto = 3;
+                    float radioPunto = 3 * escala;
                     using (Brush brochaPunto = new SolidBrush(color))
                     {
-                        graphics.FillEllipse(brochaPunto, x + 6 - radioPunto, y + 6 - radioPunto, radioPunto * 2, radioPunto * 2);
+                        graphics.FillEllipse(brochaPunto, x - radioPunto, y - radioPunto, radioPunto * 2, radioPunto * 2);
                     }
                 }
             }
@@ -158,15 +161,19 @@ namespace SimuladorDeWindowsForm
 
                 Position posicion = vuelo.GetCurrentPosition();
 
-                // Centro del avión (igual que en Paint: x + 6, y + 6)
-                double centroX = posicion.GetX() + 6;
-                double centroY = posicion.GetY() + 6;
+                // Centro del avión con la misma escala que se usa al dibujar.
+                double escala = Math.Min((double)panelEspacioAereo.Width / 800, (double)panelEspacioAereo.Height / 550);
+                double margenX = (panelEspacioAereo.Width - 800 * escala) / 2;
+                double margenY = (panelEspacioAereo.Height - 550 * escala) / 2;
+                double centroX = margenX + (posicion.GetX() + 6) * escala;
+                double centroY = margenY + (posicion.GetY() + 6) * escala;
 
                 double dx = e.X - centroX;
                 double dy = e.Y - centroY;
 
-                // Radio de clic: 15 píxeles
-                if (dx * dx + dy * dy <= 15 * 15)
+                // Radio de clic: 15 unidades del espacio aéreo.
+                double radioClic = 15 * escala;
+                if (dx * dx + dy * dy <= radioClic * radioClic)
                 {
                     FormInformacionAvion formulario = new FormInformacionAvion();
                     formulario.SetVuelo(vuelo);
