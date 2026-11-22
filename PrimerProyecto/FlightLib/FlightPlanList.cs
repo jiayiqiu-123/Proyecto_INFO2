@@ -10,7 +10,7 @@ namespace FlightLib
 {
     public class FlightPlanList
     {
-        FlightPlan[] vector = new FlightPlan[10];
+        FlightPlan[] vector = new FlightPlan[100];
         int number = 0;
         //De momento consideramos, la distancia de seguridad no varia en los vuelos
         double distanciaSeguridad = 0;
@@ -40,7 +40,7 @@ namespace FlightLib
         }
         public int AddFlightPlan(FlightPlan p)
         {
-            if (number == 10)
+            if (number == 100)
             {  return -1; }
             else
             {
@@ -65,6 +65,7 @@ namespace FlightLib
             
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public void MoverTodosVuelos()
         {
             GuardarEstadoAnterior();
@@ -77,6 +78,7 @@ namespace FlightLib
             }
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public bool HasAllArrived()
         {
             bool resultado = false;
@@ -94,6 +96,8 @@ namespace FlightLib
             }
             return resultado;
         }
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public FlightPlanList EncontrarConflicto()
         {
             FlightPlanList vuelosEnConflicto = new FlightPlanList();
@@ -181,6 +185,7 @@ namespace FlightLib
                 return vuelosEnConflicto;
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Método auxiliar: comprueba si un vuelo ya está en la lista
         private bool EstaEnLista(FlightPlanList lista, FlightPlan vuelo)
         {
@@ -192,6 +197,7 @@ namespace FlightLib
             return false;
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public bool HayConflictoTiempoReal()
         {
             for (int i = 0; i < number; i++)
@@ -210,6 +216,8 @@ namespace FlightLib
             }
             return false;
         }
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public void ResolverConflictos()
         {
             if (vector != null)
@@ -223,150 +231,178 @@ namespace FlightLib
                 }
             }
         }
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public void GuardarEnArchivo(string ruta)
+        // FUNCIÓN: guardar la lista de vuelos en un fichero de texto para poder continuar la simulación para más tarde
+        // ESTRUCTURA DEL FICHERO:
+        //   - DISTANCIA distanciaSeguridad
+        //   - CICLO tiempoCiclo
+        //   - linea de vuelo: id company posicionX posicionY destinoX destinoY velocidad
+        // Se guarda la posición ACTUAL, así al cargarlo la simulación sigue desde donde se quedó
+
         {
-            using (StreamWriter sw = new StreamWriter(ruta))
+            //abrimos el fichero para escribir en él
+            StreamWriter w = new StreamWriter(ruta);
+            // primeras líneas: los parámetros de seguridad, cada uno con su título
+            w.WriteLine("DISTANCIA " + distanciaSeguridad.ToString(CultureInfo.InvariantCulture));
+            w.WriteLine("CICLO " + tiempoCiclo.ToString(CultureInfo.InvariantCulture));
+
+            // escribimos cada vuelo en una línea, con los datos separados por espacios
+            for (int i = 0; i < number; i++)
             {
-                string velocidades = "";
-                for (int i = 0; i < number; i++)
-                {
-                    if (i > 0)
-                        velocidades = velocidades + " ";
-                    velocidades = velocidades + vector[i].GetVelocidad().ToString(CultureInfo.InvariantCulture);
-                }
+                // llamamos "vuelo" a la posición de vector[i] para no tener que escribir vector[i] cada vez
+                FlightPlan vuelo = vector[i];
+                Position posicionActual = vuelo.GetCurrentPosition();
+                Position posicionFinal = vuelo.GetFinalPosition();
 
-                sw.WriteLine(velocidades);
-                string parametros = distanciaSeguridad.ToString(CultureInfo.InvariantCulture) + " " +
-                    tiempoCiclo.ToString(CultureInfo.InvariantCulture);
-                sw.WriteLine(parametros);
+                string linea = vuelo.GetId() + " " +
+                    vuelo.GetCompany() + " " +
+                    posicionActual.GetX().ToString(CultureInfo.InvariantCulture) + " " +
+                    posicionActual.GetY().ToString(CultureInfo.InvariantCulture) + " " +
+                    posicionFinal.GetX().ToString(CultureInfo.InvariantCulture) + " " +
+                    posicionFinal.GetY().ToString(CultureInfo.InvariantCulture) + " " +
+                    vuelo.GetVelocidad().ToString(CultureInfo.InvariantCulture);
 
-                for (int i = 0; i < number; i++)
-                {
-                    FlightPlan vuelo = vector[i];
-                    Position posicionActual = vuelo.GetCurrentPosition();
-                    Position posicionFinal = vuelo.GetFinalPosition();
-
-                    string linea = vuelo.GetId() + " " +
-                        posicionActual.GetX().ToString(CultureInfo.InvariantCulture) + " " +
-                        posicionActual.GetY().ToString(CultureInfo.InvariantCulture) + " " +
-                        posicionFinal.GetX().ToString(CultureInfo.InvariantCulture) + " " +
-                        posicionFinal.GetY().ToString(CultureInfo.InvariantCulture) + " " +
-                        vuelo.GetVelocidad().ToString(CultureInfo.InvariantCulture);
-
-                    sw.WriteLine(linea);
-                }
+                w.WriteLine(linea);
             }
+
+            // siempre cerrar el fichero, si no lo escrito no puede guardarse correctamente
+            w.Close();
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public FlightPlanList CargaDeFichero(string ruta)
+        // FUNCIÓN: leer un fichero de planes de vuelo y devolver un objeto FlightPlanList con todos los vuelos cargados
+        // Sirve para los 2 tipos de ficheros:
+        //   - un fichero de planes de vuelo normal (entrada desde windows)
+        //   - una simulación guardada (con DISTANCIA y CICLO al principio)
+        // ESTRUCTURA DEL FICHERO:
+        //   - DISTANCIA distanciaSeguridad (opcional, solo en simulaciones guardadas)
+        //   - CICLO tiempoCiclo (opcional, solo en simulaciones guardadas)
+        //   - linea de vuelo: id, company, posicionX, posicionY, destinoX, destinoY, velocidad
         {
+            // lista donde se guardarán los vuelos leídos del fichero
+            FlightPlanList listaFichero = new FlightPlanList();
+            // el StreamReader se declara fuera del try (vacío) para poder cerrarlo en los catch
+            StreamReader r = null;
+
             try
             {
-                string[] lineas = File.ReadAllLines(ruta);
-                FlightPlanList listaFichero = new FlightPlanList();
-                string[] velocidadesGuardadas = null;
-                int primeraLineaVuelo = 0;
-                double distanciaGuardada = 0;
-                double cicloGuardado = 0;
+                // abrimos el fichero para lectura, si no existe o hay algún error se lanza una excepción y se va al catch
+                r = new StreamReader(ruta);
+                // lee primera línea
+                string linea = r.ReadLine();
 
-                if (lineas.Length >= 2)
+                // mientras queden líneas
+                while (linea != null)
                 {
-                    string[] primeraLinea = lineas[0].Split(' ');
-                    bool primeraLineaEsVector = true;
+                    // partimos la línea por los espacios: cada trozo es un dato
+                    string[] trozos = linea.Split(' ');
 
-                    try
+                    if(trozos[0] == "DISTANCIA")
                     {
-                        Convert.ToDouble(primeraLinea[0], CultureInfo.InvariantCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        primeraLineaEsVector = false;
-                    }
-
-                    if (primeraLineaEsVector)
-                    {
-                        try
+                        // la línea de distancia tiene que tener 2 datos: DISTANCIA y el número
+                        if (trozos.Length != 2)
                         {
-                            string[] parametros = lineas[1].Split(' ');
-                            if (parametros.Length == 2)
-                            {
-                                distanciaGuardada = Convert.ToDouble(parametros[0], CultureInfo.InvariantCulture);
-                                cicloGuardado = Convert.ToDouble(parametros[1], CultureInfo.InvariantCulture);
-                            }
-                            else if (parametros.Length == 1)
-                            {
-                                cicloGuardado = Convert.ToDouble(parametros[0], CultureInfo.InvariantCulture);
-                            }
-                            else
-                            {
-                                return null;
-                            }
-
-                            velocidadesGuardadas = primeraLinea;
-                            primeraLineaVuelo = 2;
-
-                            if (velocidadesGuardadas.Length != lineas.Length - 2)
-                                return null;
+                            r.Close();
+                            return null;
                         }
-                        catch (FormatException)
+                        // línea de la distancia de seguridad (solo en simulaciones guardadas)
+                        listaFichero.SetDistanciaSeguridad(Convert.ToDouble(trozos[1], CultureInfo.InvariantCulture));
+                    }
+
+                    else if (trozos[0] == "CICLO")
+                    {
+                        // la línea de ciclo tiene que tener 2 datos: CICLO y el número
+                        if (trozos.Length != 2)
                         {
-                            velocidadesGuardadas = null;
-                            primeraLineaVuelo = 0;
+                            r.Close();
+                            return null;
+                        }
+                        // línea del tiempo de ciclo (solo en simulaciones guardadas)
+                        listaFichero.SetTiempoCiclo(Convert.ToDouble(trozos[1], CultureInfo.InvariantCulture));
+                    }
+
+                    else
+                    {
+                        // una línea de vuelo tiene que tener 7 datos
+                        if (trozos.Length != 7)
+                        {
+                            r.Close();
+                            return null;
+                        }
+
+                        // línea de vuelo normal
+                        string id = trozos[0];
+                        string company = trozos[1];
+                        double posicionX = Convert.ToDouble(trozos[2], CultureInfo.InvariantCulture);
+                        double posicionY = Convert.ToDouble(trozos[3], CultureInfo.InvariantCulture);
+                        double destinoX = Convert.ToDouble(trozos[4], CultureInfo.InvariantCulture);
+                        double destinoY = Convert.ToDouble(trozos[5], CultureInfo.InvariantCulture);
+                        double velocidad = Convert.ToDouble(trozos[6], CultureInfo.InvariantCulture);
+                        // creamos un nuevo FlightPlan con los datos leídos del fichero y lo añadimos a la lista de vuelos
+                        FlightPlan vuelo = new FlightPlan(id, company, posicionX, posicionY, destinoX, destinoY, velocidad);
+                        int resultado = listaFichero.AddFlightPlan(vuelo);
+
+                        // si el resultado es -1, significa que la lista está llena y no se pueden añadir más vuelos
+                        if (resultado == -1)
+                        {
+                            r.Close();
+                            return null;
                         }
                     }
+
+                    // leemos la siguiente línea
+                    linea = r.ReadLine();
                 }
 
-                for (int i = primeraLineaVuelo; i < lineas.Length; i++)
-                {
-                    string[] datosVuelo = lineas[i].Split(' ');
-                    if (datosVuelo.Length != 6)
-                        return null;
-
-                    string id = datosVuelo[0];
-                    double posicionX = Convert.ToDouble(datosVuelo[1], CultureInfo.InvariantCulture);
-                    double posicionY = Convert.ToDouble(datosVuelo[2], CultureInfo.InvariantCulture);
-                    double destinoX = Convert.ToDouble(datosVuelo[3], CultureInfo.InvariantCulture);
-                    double destinoY = Convert.ToDouble(datosVuelo[4], CultureInfo.InvariantCulture);
-                    double velocidad = Convert.ToDouble(datosVuelo[5], CultureInfo.InvariantCulture);
-
-                    if (velocidadesGuardadas != null)
-                        velocidad = Convert.ToDouble(velocidadesGuardadas[i - 2], CultureInfo.InvariantCulture);
-
-                    FlightPlan vuelo = new FlightPlan(id, posicionX, posicionY, destinoX, destinoY, velocidad);
-                    if (listaFichero.AddFlightPlan(vuelo) != 0)
-                        return null;
-                }
-
-                if (velocidadesGuardadas != null)
-                {
-                    listaFichero.SetDistanciaSeguridad(distanciaGuardada);
-                    listaFichero.SetTiempoCiclo(cicloGuardado);
-                }
-
+                // cerramos el fichero y devolvemos la lista llena
+                r.Close();
                 return listaFichero;
             }
             catch (FormatException)
             {
+                // algún número del fichero tiene letras en vez de números
+                r.Close();
                 return null;
             }
             catch (IndexOutOfRangeException)
             {
+                // a alguna línea le faltan datos (o hay una línea vacía)
+                r.Close();
                 return null;
             }
             catch (IOException)
             {
+                // el fichero no existe o no se puede leer (por ejemplo, está abierto por otro programa)
+                if (r != null)
+                {
+                    r.Close();
+                }
                 return null;
             }
             catch (UnauthorizedAccessException)
             {
+                // no hay permiso para abrir el fichero
+                if (r != null)
+                {
+                    r.Close();
+                }
                 return null;
             }
             catch (ArgumentException)
             {
+                // la ruta del fichero está vacía o no es válida
+                if (r != null)
+                {
+                    r.Close();
+                }
                 return null;
             }
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public void EscribeConsola()
         {
             int i = 0;
@@ -378,6 +414,7 @@ namespace FlightLib
             }
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public FlightPlanList Clonar()
         {
             // Crea una copia del objeto FlightPlanList actual (distancia de seguridad, tiempo de ciclo y cada vuelo clonado individualmente).
@@ -394,6 +431,7 @@ namespace FlightLib
             return copia;
         }
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         /// Pila que guarda las copias de estados anteriores para poder deshacer pasos
         Stack<FlightPlan[]> historialEstadosVuelo = new Stack<FlightPlan[]>();
 
@@ -406,8 +444,8 @@ namespace FlightLib
         // Crea una copia independiente del array actual de vuelos (vector) y la guarda en la pila antes de que los aviones avancen al siguiente paso.
         public void GuardarEstadoAnterior()
         {
-            // Creamos un nuevo array vacío de 10 posiciones para no sobrescribir el original
-            FlightPlan[] copiaVector = new FlightPlan[10];
+            // Creamos un nuevo array vacío de 100 posiciones para no sobrescribir el original
+            FlightPlan[] copiaVector = new FlightPlan[100];
             for (int i = 0; i < number; i++)
             {
                 copiaVector[i] = vector[i].Clonar();

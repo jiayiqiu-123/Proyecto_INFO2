@@ -41,7 +41,15 @@ namespace SimuladorDeWindowsForm
         {
             FormPlanesDeVuelo f = new FormPlanesDeVuelo();
             f.ShowDialog();
-            ListaVuelos = f.GetFlightPlanList();
+            // solo cambiamos la lista si el usuario ha introducido vuelos (si ha cancelado, viene vacía)
+            FlightPlanList nueva = f.GetFlightPlanList();
+            if (nueva.GetNumber() > 0)
+            {
+                ListaVuelos = nueva;
+                // le pasamos los parámetros de seguridad que el usuario ya hubiera introducido
+                ListaVuelos.SetDistanciaSeguridad(distanciaSeguridad);
+                ListaVuelos.SetTiempoCiclo(tiempoCiclo);
+            }
         }
 
         private void parámetrosDeSeguridadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,8 +98,8 @@ namespace SimuladorDeWindowsForm
         private void btnPruebas_Click(object sender, EventArgs e)
         {
             ListaVuelos = new FlightPlanList();
-            vuelo1 = new FlightPlan("VLG1234", 50, 100, 500, 300, 10);
-            vuelo2 = new FlightPlan("IBE1234", 50, 300, 500, 100, 10);
+            vuelo1 = new FlightPlan("VLG1234", "Vueling", 50, 100, 500, 300, 10);
+            vuelo2 = new FlightPlan("IBE1234", "Iberia", 50, 300, 500, 100, 10);
 
             int resultado = ListaVuelos.AddFlightPlan(vuelo1);
             int resultado2 = ListaVuelos.AddFlightPlan(vuelo2);
@@ -152,6 +160,11 @@ namespace SimuladorDeWindowsForm
                 }
 
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }

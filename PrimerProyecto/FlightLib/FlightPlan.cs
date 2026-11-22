@@ -14,24 +14,26 @@ namespace FlightLib
         // ATRIBUTOS (variables) - estas siempre son privadas, sin poner delante nada para no poder ser modificadas
 
         string id; // identificador
+        string company; // compañia
         Position initialPosition; // posición inicial
         Position currentPosition; // posicion actual
         Position finalPosition; // posicion final
-        double velocidad;
-        double velocidadoriginal;
-        Color color;
+        double velocidad;  // velocidad del avión
+        double velocidadoriginal;  // velocidad original del avión
+        Color color; // color del avión
         static readonly Random generadorAleatorio = new Random();
+
         // CONSTRUCTORES (através de parámetros pone atributos)
-        // un constructor es un método especial que se llama igual que la clase y sirve para inicializar los atributos de la clase que les hemos pasado como parametro
-        // el constructor lo que hace es ""montar"" el objeto, es decir, crear el objeto con los atributos que le pasamos para que esten ordenados como queramos
+        // el constructor lo que hace es "montar" el objeto, es decir, crear el objeto con los atributos que le pasamos para que esten ordenados como queramos
         // el programa siempre sabrá a que constructor ir por el numero de atributos que tenga 
 
-        public FlightPlan(string id, double cpx, double cpy, double fpx, double fpy, double velocidad)
+        public FlightPlan(string id, string company, double cpx, double cpy, double fpx, double fpy, double velocidad)
         {
             // atributos de la clase FlightPlan, delante simplemente le ponemos el tipo (ejemplo:"string")
             // delante de los atributos no se pone nada, LOS ATRIBUTOS YA SON PRIVADOS
 
             this.id = id;
+            this.company = company;
             this.initialPosition = new Position(cpx, cpy);
             this.currentPosition = new Position(cpx, cpy);
             this.finalPosition = new Position(fpx, fpy);
@@ -43,9 +45,12 @@ namespace FlightLib
         // METODOS (funciones)
         // son los métodos que van a trabajar sobre los atributos de la clase FlightPlan
 
-        // GETTERS
+        // GETTERS --------------------------------------------------------------------------------------------------------------------------------------------------------
         public string GetId()
         { return id; }
+
+        public string GetCompany()
+        { return company; }
 
         public Position GetInitialPosition()
         { return initialPosition; }
@@ -66,10 +71,13 @@ namespace FlightLib
         { return color; }
 
 
-        // SETTERS
+        // SETTERS --------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public void SetId(string id)
         { this.id = id; }
+
+        public void SetCompany(string company)
+        { this.company = company; }
 
         public void SetCurrentPosition(Position currentPosition)
         { this.currentPosition = currentPosition; }
@@ -96,7 +104,7 @@ namespace FlightLib
 
         }
 
-        ///////////////////////////////////////////////////
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public void Mover(double tiempo)
         {
@@ -177,6 +185,7 @@ namespace FlightLib
             FlightPlan copia = new FlightPlan
             (
                 this.id,
+                this.company,
                 this.initialPosition.GetX(),
                 this.initialPosition.GetY(),
                 this.finalPosition.GetX(),

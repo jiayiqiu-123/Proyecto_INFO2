@@ -26,6 +26,7 @@ namespace SimuladorDeWindowsForm
         {
             dgvVuelos.Columns.Clear();
             dgvVuelos.Columns.Add("Id", "Identificador");
+            dgvVuelos.Columns.Add("Company", "Compañía");
             dgvVuelos.Columns.Add("Velocidad", "Velocidad (km/h)");
             dgvVuelos.Columns.Add("PosX", "Posición X");
             dgvVuelos.Columns.Add("PosY", "Posición Y");
@@ -47,6 +48,7 @@ namespace SimuladorDeWindowsForm
 
                 int fila = dgvVuelos.Rows.Add(
                     vuelo.GetId(),
+                    vuelo.GetCompany(),
                     vuelo.GetVelocidad().ToString("F2"),
                     vuelo.GetCurrentPosition().GetX().ToString("F2"),
                     vuelo.GetCurrentPosition().GetY().ToString("F2"));

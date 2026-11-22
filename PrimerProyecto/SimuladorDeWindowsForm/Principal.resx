@@ -120,4 +120,14 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="intrucciones.Text" xml:space="preserve">
+    <value>1. (OPCIÓN 1) Carga un fichero de vuelos (Opciones → Cargar simulación desde fichero)
+   o (OPCIÓN 2)introdúcelos a mano (Opciones → Introducir planes de vuelo)
+2. Introduce los parámetros de seguridad
+3. Abre el espacio aéreo para simular
+
+* si prefieres solamente comprobar la funcionalidad, el botón de "autocompletar" 
+ya da unos parámetros para poder inicializar la simulación
+</value>
+  </data>
 </root>

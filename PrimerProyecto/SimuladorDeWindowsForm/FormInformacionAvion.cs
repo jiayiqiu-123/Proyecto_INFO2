@@ -37,6 +37,7 @@ namespace SimuladorDeWindowsForm
 
             lblInformacion.Text =
                 "Identificador: " + vuelo.GetId() + "\n" +
+                "Compañía: " + vuelo.GetCompany() + "\n" +
                 "Velocidad: " + vuelo.GetVelocidad() + "\n" +
                 "Posición actual: (" + actual.GetX() + ", " + actual.GetY() + ")\n" +
                 "Destino: (" + destino.GetX() + ", " + destino.GetY() + ")";
