@@ -105,7 +105,6 @@ namespace FlightLib
             double dy = finalPosition.GetY() - currentPosition.GetY();
 
             double longitud = Math.Sqrt(dx * dx + dy * dy);
-¡
             if (longitud == 0)
                 return;
 
