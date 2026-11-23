@@ -84,7 +84,7 @@
             this.espacioAéreoToolStripMenuItem.Name = "espacioAéreoToolStripMenuItem";
             this.espacioAéreoToolStripMenuItem.Size = new System.Drawing.Size(386, 34);
             this.espacioAéreoToolStripMenuItem.Text = "Espacio aéreo";
-            this.espacioAéreoToolStripMenuItem.Click += new System.EventHandler(this.espacioAéreoTool_Click);
+            this.espacioAéreoToolStripMenuItem.Click += new System.EventHandler(this.espacioAéreo_Click);
             // 
             // cargarPlanesDeVueloDesdeFicheroToolStripMenuItem
             // 

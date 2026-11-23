@@ -65,7 +65,7 @@ namespace SimuladorDeWindowsForm
                 MessageBox.Show("Parámetros guardados.");
             }
         }
-        private void espacioAéreoTool_Click(object sender, EventArgs e)
+        private void espacioAéreo_Click(object sender, EventArgs e)
         {
             // Revisa los datos de la ListaVuelos y abre FormSimulacion de forma modal con dichos datos si están todos correctamente introducidos.
             if (ListaVuelos == null || ListaVuelos.GetNumber() == 0)
@@ -123,18 +123,19 @@ namespace SimuladorDeWindowsForm
             if (dialogo.ShowDialog() == DialogResult.OK)
             {
                 string rutaFichero = dialogo.FileName;
-                ListaVuelos.CargaDeFichero(rutaFichero);
+                FlightPlanList listaCargada = ListaVuelos.CargaDeFichero(rutaFichero);
 
-                if (ListaVuelos==null)
+                if (listaCargada==null)
                 {
                     MessageBox.Show("No se ha podido cargar el fichero. Compruebe que el formato y información sea el correcto");
                 }
-                else if (ListaVuelos.GetNumber() == 0)
+                else if (listaCargada.GetNumber() == 0)
                 {
                     MessageBox.Show("El fichero está vacío.");
                 }
                 else
                 {
+                    ListaVuelos = listaCargada;
                     // Los parámetros del fichero tienen prioridad; si no los trae, se mantienen los ya configurados.
                     if (ListaVuelos.GetDistanciaSeguridad() > 0)
                         distanciaSeguridad = (float)ListaVuelos.GetDistanciaSeguridad();

@@ -54,7 +54,6 @@ namespace SimuladorDeWindowsForm
         {
             try
             {
-                double v;
                 for (int i = 0; i < ListaVuelos.GetNumber(); i++)
                 {
                     // La tercera columna es la de la nueva velocidad
