@@ -39,7 +39,6 @@
             this.lblInformacion.Size = new System.Drawing.Size(62, 18);
             this.lblInformacion.TabIndex = 0;
             this.lblInformacion.Text = "label1";
-            this.lblInformacion.Click += new System.EventHandler(this.label1_Click);
             // 
             // FormInformacionAvion
             // 

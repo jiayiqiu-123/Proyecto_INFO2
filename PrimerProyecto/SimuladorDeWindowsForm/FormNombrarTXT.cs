@@ -15,6 +15,7 @@ namespace SimuladorDeWindowsForm
     {
         FlightPlanList ListaVuelos = new FlightPlanList();
 
+        // Permite establecer la lista de vuelos que se guardará en el archivo .txt.
         public void SetFlightPlanList(FlightPlanList listaVuelos)
         {
             this.ListaVuelos = listaVuelos;
@@ -24,9 +25,10 @@ namespace SimuladorDeWindowsForm
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Guarda la lista de vuelos en un fichero .txt con el nombre introducido.
+        private void Guardar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (textBox1.Text.Trim() == "")
             {
                 MessageBox.Show("Por favor, ingrese un nombre de archivo válido.");
                 return;
@@ -48,6 +50,7 @@ namespace SimuladorDeWindowsForm
             }
         }
 
+        // Cierra el formulario sin guardar.
         private void Cancelar_Click(object sender, EventArgs e)
         {
             Close();

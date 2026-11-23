@@ -13,14 +13,12 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormUser : Form
     {
-        //objeto para acceder a la base de datos
         Gestion mi_base = new Gestion();
-        //constructor del formulario (lo crea Visual Studio)
         public FormUser()
         {
             InitializeComponent();
         }
-        //devuelve el username de quien ha entrado ("" si no ha entrado nadie)
+        // Devuelve el nombre del usuario que ha iniciado sesión.
         public string GetUsuario()
         {
             return mi_base.GetUsuarioActual();
@@ -52,15 +50,6 @@ namespace SimuladorDeWindowsForm
                 MessageBox.Show("No se ha podido crear, prueba a cambiar el username");
         }
 
-        private void textBoxUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         //al abrir el formulario se abre la base de datos
         private void FormUser_Load(object sender, EventArgs e)
         {

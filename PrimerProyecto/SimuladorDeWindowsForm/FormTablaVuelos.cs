@@ -18,10 +18,12 @@ namespace SimuladorDeWindowsForm
         {
             InitializeComponent();
         }
+        // Setter para la lista de vuelos, que se usará para rellenar la tabla.
         public void SetListaVuelos(FlightPlanList listaVuelos)
         {
             this.ListaVuelos = listaVuelos;
         }
+        // Configura las columnas de la tabla y la rellena con los datos actuales de cada vuelo.
         private void FormTablaVuelos_Load(object sender, EventArgs e)
         {
             dgvVuelos.Columns.Clear();
@@ -53,12 +55,13 @@ namespace SimuladorDeWindowsForm
                     vuelo.GetCurrentPosition().GetX().ToString("F2"),
                     vuelo.GetCurrentPosition().GetY().ToString("F2"));
 
-                // Guardamos la fila seleccionada
+                // Se guarda el vuelo en la fila (Tag) para recuperarlo después al hacer clic
                 dgvVuelos.Rows[fila].Tag = vuelo;
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        // Al hacer clic en una fila, abre el formulario de distancias del vuelo seleccionado.
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -71,11 +74,6 @@ namespace SimuladorDeWindowsForm
             formulario.SetVueloSeleccionado(vueloSeleccionado);
             formulario.SetListaVuelos(ListaVuelos);
             formulario.ShowDialog();
-        }
-
-        private void dgvVuelos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

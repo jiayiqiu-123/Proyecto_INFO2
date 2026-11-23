@@ -52,7 +52,7 @@
             this.panelEspacioAereo.Name = "panelEspacioAereo";
             this.panelEspacioAereo.Size = new System.Drawing.Size(609, 454);
             this.panelEspacioAereo.TabIndex = 1;
-            this.panelEspacioAereo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.panelEspacioAereo.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDeTrayectoria_Paint);
             // 
             // btnMover
             // 
@@ -84,7 +84,6 @@
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "(0, 550)";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label4
             // 
@@ -95,7 +94,6 @@
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 5;
             this.label4.Text = "(800, 0)";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btnSimulacionAutomatica
             // 

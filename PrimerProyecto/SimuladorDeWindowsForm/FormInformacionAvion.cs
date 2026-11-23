@@ -19,28 +19,26 @@ namespace SimuladorDeWindowsForm
             InitializeComponent();
         }
 
+        // Setter
         public void SetVuelo(FlightPlan vuelo)
         {
             this.vuelo = vuelo;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
+        // Al abrir el formulario, muestra los datos del vuelo en la etiqueta.
         private void FormInformacionAvion_Load(object sender, EventArgs e)
         {
             if (vuelo == null)
                 return;
-            Position actual = vuelo.GetCurrentPosition();
-            Position destino = vuelo.GetFinalPosition();
+            Position posicionActual = vuelo.GetCurrentPosition();
+            Position posicionDestino = vuelo.GetFinalPosition();
 
             lblInformacion.Text =
                 "Identificador: " + vuelo.GetId() + "\n" +
                 "Compañía: " + vuelo.GetCompany() + "\n" +
-                "Velocidad: " + vuelo.GetVelocidad() + "\n" +
-                "Posición actual: (" + actual.GetX() + ", " + actual.GetY() + ")\n" +
-                "Destino: (" + destino.GetX() + ", " + destino.GetY() + ")";
+                "Velocidad: " + vuelo.GetVelocidad().ToString("F2") + "\n" +
+                "Posición actual: (" + posicionActual.GetX().ToString("F2") + ", " + posicionActual.GetY().ToString("F2") + ")\n" +
+                "Destino: (" + posicionDestino.GetX().ToString("F2") + ", " + posicionDestino.GetY().ToString("F2") + ")";
         }
     }
 }

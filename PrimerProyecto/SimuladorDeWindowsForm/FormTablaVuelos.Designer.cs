@@ -41,8 +41,7 @@
             this.dgvVuelos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVuelos.Size = new System.Drawing.Size(547, 325);
             this.dgvVuelos.TabIndex = 0;
-            this.dgvVuelos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dgvVuelos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVuelos_CellContentClick);
+            this.dgvVuelos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
             // FormTablaVuelos
             // 

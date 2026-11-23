@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvDistancias = new System.Windows.Forms.DataGridView();
             this.labelTitulo = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDistancias)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(34, 50);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(386, 220);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvDistancias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDistancias.Location = new System.Drawing.Point(34, 50);
+            this.dgvDistancias.Name = "dataGridView1";
+            this.dgvDistancias.Size = new System.Drawing.Size(386, 220);
+            this.dgvDistancias.TabIndex = 1;
             // 
             // labelTitulo
             // 
@@ -58,18 +57,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 323);
             this.Controls.Add(this.labelTitulo);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvDistancias);
             this.Name = "FormDistancia";
             this.Text = "FormDistancia";
             this.Load += new System.EventHandler(this.FormDistancia_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDistancias)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvDistancias;
         private System.Windows.Forms.Label labelTitulo;
     }
 }

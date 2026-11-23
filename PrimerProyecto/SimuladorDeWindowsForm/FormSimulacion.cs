@@ -14,17 +14,13 @@ namespace SimuladorDeWindowsForm
     public partial class FormSimulacion : Form
     {
         FlightPlanList ListaVuelos = new FlightPlanList();
-        double tiempoCiclo;
-        float dSeguridad;
         bool enConflicto = false;
         // esto me servirá como variable para el conflicto, en el buttonPredicción
-
-        
 
         public FormSimulacion()
         {
             InitializeComponent();
-            // Doble búfer para evitar parpadeo
+            // Evita el parpadeo al redibujar (técnica estándar para paneles de WinForms)
             this.DoubleBuffered = true;
             typeof(Panel).InvokeMember("DoubleBuffered",
                 System.Reflection.BindingFlags.SetProperty |
@@ -37,24 +33,18 @@ namespace SimuladorDeWindowsForm
             panelEspacioAereo.MouseClick += panelEspacioAereo_MouseClick;
         }
 
-        public void SetDSeguridad(float dSeguridad)
-        {
-            this.dSeguridad = dSeguridad;
-        }
-
-        public void SetTiempoCiclo(double tiempoCiclo)
-        {
-            this.tiempoCiclo = tiempoCiclo;
-        }
-
+        // Recibe la lista de vuelos que se va a simular.
         public void SetListaVuelos(FlightPlanList listaVuelos)
         {
             this.ListaVuelos = listaVuelos;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        // Dibuja en el panel la trayectoria, el círculo de seguridad y la posición actual de cada vuelo.
+        private void PanelDeTrayectoria_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
+            // La escala es la menor de las dos proporciones (ancho y alto) para que el espacio aéreo 800x550 quepa entero sin deformarse;
+            // los márgenes centran el dibujo en el panel.
             float escala = Math.Min((float)panelEspacioAereo.Width / 800, (float)panelEspacioAereo.Height / 550);
             float margenX = (panelEspacioAereo.Width - 800 * escala) / 2;
             float margenY = (panelEspacioAereo.Height - 550 * escala) / 2;
@@ -86,9 +76,10 @@ namespace SimuladorDeWindowsForm
                         graphics.DrawLine(lapizTrayectoria, OrigenX, OrigenY, FinalX, FinalY);
                     }
 
-                    float diametro = dSeguridad * 2 * escala;
-                    float esquinaX = x - dSeguridad * escala;
-                    float esquinaY = y - dSeguridad * escala;
+                    // [NUEVO] El círculo de seguridad está centrado en el avión: su esquina superior izquierda es (x - radio, y - radio) y su diámetro es 2 * radio.
+                    float diametro = ListaVuelos.GetDistanciaSeguridad() * 2 * escala;
+                    float esquinaX = x - ListaVuelos.GetDistanciaSeguridad() * escala;
+                    float esquinaY = y - ListaVuelos.GetDistanciaSeguridad() * escala;
 
                     using (Pen lapizSeguridad = new Pen(Color.OrangeRed, 1))
                     {
@@ -112,6 +103,7 @@ namespace SimuladorDeWindowsForm
             }
         }
 
+        // Al abrir el formulario deja la simulación en su estado inicial y avisa si se prevé algún conflicto.
         private void FormSimulacion_Load(object sender, EventArgs e)
         {
             if (timerSimulacion.Enabled == true)
@@ -130,29 +122,32 @@ namespace SimuladorDeWindowsForm
             buttonDeshacer.Enabled = false; // Limpiar el historial de estados anteriores al cargar la simulación
             panelEspacioAereo.Invalidate();
 
-                    FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
-                    if (hayConflicto != null)
-                    {
-                        FormConflicto f = new FormConflicto();
-                        f.SetListaConflictos(hayConflicto);
-                        f.ShowDialog();
-                    }
+            FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
+            if (hayConflicto != null)
+            {
+                FormConflicto f = new FormConflicto();
+                f.SetListaConflictos(hayConflicto);
+                f.ShowDialog();
+            }
 
 
         }
+        // Avanza un ciclo de simulación manualmente y redibuja el panel.
         private void btnMover_Click(object sender, EventArgs e)
         {
-           
+
             ListaVuelos.MoverTodosVuelos();
             buttonDeshacer.Enabled = ListaVuelos.PuedeDeshacer();
             enConflicto = ListaVuelos.HayConflictoTiempoReal();
             panelEspacioAereo.Invalidate();
         }
+        // Detecta si el clic cae sobre un avión y, si es así, abre su información.
         private void panelEspacioAereo_MouseClick(object sender, MouseEventArgs e)
         {
             if (ListaVuelos == null)
                 return;
 
+            //Se recorre de atrás hacia delante: si dos aviones se solapan, se elige el último dibujado (el que se ve encima).
             for (int i = ListaVuelos.GetNumber() - 1; i >= 0; i--)
             {
                 FlightPlan vuelo = ListaVuelos.GetFlightPlan(i);
@@ -173,6 +168,7 @@ namespace SimuladorDeWindowsForm
 
                 // Radio de clic: 15 unidades del espacio aéreo.
                 double radioClic = 15 * escala;
+                //Se comparan distancias al cuadrado (dx² + dy² <= radio²) para no calcular la raíz cuadrada.
                 if (dx * dx + dy * dy <= radioClic * radioClic)
                 {
                     FormInformacionAvion formulario = new FormInformacionAvion();
@@ -183,11 +179,7 @@ namespace SimuladorDeWindowsForm
             }
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Alterna la simulación automática: la inicia (y bloquea el botón Mover) o la detiene.
         private void btnIniciarAutomatico_Click(object sender, EventArgs e)
         {
             if (timerSimulacion.Enabled == false)
@@ -203,8 +195,9 @@ namespace SimuladorDeWindowsForm
                 btnSimulacionAutomatica.Text = "Iniciar simulación automática";
                 btnMover.Enabled = true;
             }
-    }
+        }
 
+        //Cada 200 ms avanza un ciclo de simulación; se detiene cuando todos los vuelos han llegado.
         private void timerSimulacion_Tick(object sender, EventArgs e)
         {
             if (ListaVuelos.HasAllArrived())
@@ -215,7 +208,7 @@ namespace SimuladorDeWindowsForm
             }
             else
             {
-        
+
                 ListaVuelos.MoverTodosVuelos();
                 buttonDeshacer.Enabled = ListaVuelos.PuedeDeshacer();
                 enConflicto = ListaVuelos.HayConflictoTiempoReal();
@@ -224,6 +217,7 @@ namespace SimuladorDeWindowsForm
 
         }
 
+        //Abre la tabla con los datos de todos los vuelos.
         private void buttonVerTablaVuelos_Click(object sender, EventArgs e)
         {
             FormTablaVuelos fTabla = new FormTablaVuelos();
@@ -231,6 +225,7 @@ namespace SimuladorDeWindowsForm
             fTabla.ShowDialog();
         }
 
+        //Predice si los círculos de seguridad se van a tocar y lo indica con un mensaje.
         private void buttonPrediccion_Click(object sender, EventArgs e)
         {
             FlightPlanList hayConflicto = ListaVuelos.EncontrarConflicto();
@@ -239,11 +234,8 @@ namespace SimuladorDeWindowsForm
             else
                 MessageBox.Show("Los círculos de seguridad no se tocarán.");
         }
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        //Reinicia la simulación: vuelos a su posición y velocidad originales, historial vacío y aviso de conflictos.
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             if (timerSimulacion.Enabled == true)
@@ -252,7 +244,7 @@ namespace SimuladorDeWindowsForm
                 btnSimulacionAutomatica.Text = "Iniciar simulación automática";
                 btnMover.Enabled = true;
             }
-            for(int i = 0; i < ListaVuelos.GetNumber(); i++)
+            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
                 ListaVuelos.GetFlightPlan(i).Restart();
                 ListaVuelos.GetFlightPlan(i).RestaurarVelocidadesOriginales();
@@ -267,9 +259,10 @@ namespace SimuladorDeWindowsForm
                 f.SetListaConflictos(hayConflicto);
                 f.ShowDialog();
             }
-        
+
         }
 
+        //Abre el formulario para cambiar velocidades y, si se aceptan, reinicia la simulación con las nuevas.
         private void btnCambiarVelocidad_Click(object sender, EventArgs e)
         {
             if (timerSimulacion.Enabled == true)
@@ -283,6 +276,7 @@ namespace SimuladorDeWindowsForm
             f.ShowDialog();
             if (f.GetCambiosAceptados() == true)
             {
+                //Aquí solo se llama a Restart() y no a RestaurarVelocidadesOriginales(), para conservar las velocidades recién cambiadas.
                 for (int i = 0; i < ListaVuelos.GetNumber(); i++)
                 {
                     ListaVuelos.GetFlightPlan(i).Restart();
@@ -301,6 +295,7 @@ namespace SimuladorDeWindowsForm
 
         }
 
+        //Detiene la simulación automática y abre el formulario para guardar los planes de vuelo en un .txt.
         private void GuardarFlightPlanList_Click(object sender, EventArgs e)
         {
             if (timerSimulacion.Enabled == true)
@@ -315,11 +310,12 @@ namespace SimuladorDeWindowsForm
 
         }
 
+        //Deshace el último paso de la simulación si hay estados anteriores guardados.
         private void buttonDeshacer_Click(object sender, EventArgs e)
         {
             // Comprueba si la simulación automática(el temporizador) está en marcha.
             // Si está encendida, la detiene para que los aviones no sigan avanzando solos al deshacer.
-            if (timerSimulacion.Enabled) 
+            if (timerSimulacion.Enabled)
             {
                 timerSimulacion.Stop();
                 btnSimulacionAutomatica.Text = "Iniciar simulación automática";

@@ -21,6 +21,7 @@ namespace SimuladorDeWindowsForm
             InitializeComponent();
         }
 
+        // Setters para el vuelo seleccionado y la lista de vuelos.
         public void SetVueloSeleccionado(FlightPlan vuelo)
         {
             vueloSeleccionado = vuelo;
@@ -31,19 +32,20 @@ namespace SimuladorDeWindowsForm
             listaVuelos = vuelos;
         }
 
+        // Al abrir el formulario, muestra la distancia entre el vuelo seleccionado y el resto de vuelos.
         private void FormDistancia_Load(object sender, EventArgs e)
         {
-            dataGridView1.Columns.Clear();
+            dgvDistancias.Columns.Clear();
 
             if (vueloSeleccionado == null || listaVuelos == null)
                 return;
 
-            dataGridView1.Columns.Add("Id", "Vuelo");
-            dataGridView1.Columns.Add("Distancia", vueloSeleccionado.GetId());
+            dgvDistancias.Columns.Add("Id", "Vuelo");
+            dgvDistancias.Columns.Add("Distancia", vueloSeleccionado.GetId());
 
-            dataGridView1.ReadOnly = true;
-            dataGridView1.MultiSelect = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDistancias.ReadOnly = true;
+            dgvDistancias.MultiSelect = false;
+            dgvDistancias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             this.Text = "Distancias desde " + vueloSeleccionado.GetId();
 
@@ -54,13 +56,8 @@ namespace SimuladorDeWindowsForm
                     continue;
 
                 double distancia = vueloSeleccionado.Distance(vuelo);
-                dataGridView1.Rows.Add(vuelo.GetId(), distancia.ToString("F2"));
+                dgvDistancias.Rows.Add(vuelo.GetId(), distancia.ToString("F2"));
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

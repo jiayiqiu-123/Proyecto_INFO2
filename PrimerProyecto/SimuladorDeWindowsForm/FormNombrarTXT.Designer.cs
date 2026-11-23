@@ -43,7 +43,7 @@
             this.Aceptar.TabIndex = 0;
             this.Aceptar.Text = "Aceptar";
             this.Aceptar.UseVisualStyleBackColor = true;
-            this.Aceptar.Click += new System.EventHandler(this.button1_Click);
+            this.Aceptar.Click += new System.EventHandler(this.Guardar_Click);
             // 
             // textBox1
             // 

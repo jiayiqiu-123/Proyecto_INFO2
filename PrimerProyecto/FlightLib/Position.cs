@@ -8,9 +8,8 @@ namespace FlightLib
 {
     public class Position
     {
-        // Atributos
-        double x; // coordenada X (2D)
-        double y; // coordenada Y (2D)
+        double x;
+        double y;
 
         // Constructores
 
@@ -20,25 +19,22 @@ namespace FlightLib
             this.y = y;
         }
 
-        // Metodos
-
+        // Getters
         public double GetX()
-        // getter del atributo x
         { return x; }
 
         public double GetY()
-        // getter del atributo y
         { return y; }
 
-        public double Distancia(Position b)
         // retorna la distancia entre los dos Postion
+        public double Distancia(Position b)
         {
             double resultado = Math.Sqrt((x - b.x) * (x - b.x) + (y - b.y) * (y - b.y));
             return resultado;
         }
 
-        public Position Clonar()
         // retorna una copia de la posición actual
+        public Position Clonar()
         {
             return new Position(this.x, this.y);
         }

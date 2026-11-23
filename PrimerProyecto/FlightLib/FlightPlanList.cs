@@ -12,60 +12,61 @@ namespace FlightLib
     {
         FlightPlan[] vector = new FlightPlan[100];
         int number = 0;
-        //De momento consideramos, la distancia de seguridad no varia en los vuelos
-        double distanciaSeguridad = 0;
+        float distanciaSeguridad = 0;
         double tiempoCiclo;
 
-        // necesitamos un método para añadir un FlightPlan a la lista
+        // GETTERS
         public int GetNumber()
         {
             return number;
         }
-
-        public void SetDistanciaSeguridad(double d)
-        {
-            this.distanciaSeguridad = d;
-        }
-        public double GetDistanciaSeguridad()
+        public float GetDistanciaSeguridad()
         {
             return distanciaSeguridad;
-        }
-        public void SetTiempoCiclo(double t)
-        {
-            this.tiempoCiclo = t;
         }
         public double GetTiempoCiclo()
         {
             return tiempoCiclo;
         }
+
+        // SETTERS
+        public void SetTiempoCiclo(double t)
+        {
+            this.tiempoCiclo = t;
+        }
+        public void SetDistanciaSeguridad(float d)
+        {
+            this.distanciaSeguridad = d;
+        }
         public int AddFlightPlan(FlightPlan p)
         {
             if (number == 100)
-            {  return -1; }
+            { return -1; }
             else
             {
                 vector[number] = p;
-                // incrementamos el número de FlightPlans en la lista - mismo que numer = numer + 1
                 number++;
                 return 0;
             }
         }
 
-        public FlightPlan GetFlightPlan(int i)
+        //MÉTODOS
+
+        // Devuelve el vuelo que está en la posición i de la lista (FlightPlan),
+        // o null si la posición no es válida (menor que 0 o mayor/igual que el número de vuelos).
         // esto es un getter para devolver un FlightPlan de la lista, que esté en la posición i de vector
+        public FlightPlan GetFlightPlan(int i)
         {
-            //solo son validos los indices de i a number
             if (i < 0 || i >= number)
-            // esas barras es una manera de poner un "or"
             { return null; }
-            // return null quiere decir que no podemos retornar ningún valor porque no se puede acceder a la posición
-            else 
+            else
             { return vector[i]; }
-            
-            
+
+
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        // Avanza un ciclo de simulación: guarda el estado actual (para poder deshacer) y mueve todos los vuelos.
         public void MoverTodosVuelos()
         {
             GuardarEstadoAnterior();
@@ -73,35 +74,29 @@ namespace FlightLib
             while (i < number)
             {
                 vector[i].Mover(tiempoCiclo);
-                // recorremos todos los FlightPlans de la lista y los movemos
                 i++;
             }
         }
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Comprueba si todos los vuelos han llegado a su destino.
+        // Devuelve true si han llegado todos, o false en cuanto encuentra uno que todavía está en vuelo.
         public bool HasAllArrived()
         {
-            bool resultado = false;
-            int j = 0;
-            for(int i= 0; i< number; i ++)
+            for (int i = 0; i < number; i++)
             {
-                if (vector[i].HasArrived())
-                {
-                    j++;
-                }
+                if (!vector[i].HasArrived())
+                    return false;
             }
-            if (j == number)
-            {
-                resultado = true;
-            }
-            return resultado;
+            return true;
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Predice, a partir de las trayectorias completas, qué vuelos entrarán en conflicto (sus círculos de seguridad se tocarán).
+        // Para cada pareja calcula el instante de mínima distancia entre ellos, suponiendo velocidad constante y línea recta.
+        // Devuelve una nueva FlightPlanList con los vuelos implicados (sin repetidos), o null si no hay ningún conflicto.
         public FlightPlanList EncontrarConflicto()
         {
             FlightPlanList vuelosEnConflicto = new FlightPlanList();
 
+            // Cada pareja se compara una sola vez (j empieza en i + 1)
             for (int i = 0; i < number; i++)
             {
                 for (int j = i + 1; j < number; j++)
@@ -132,7 +127,6 @@ namespace FlightLib
                     double velocidad1 = vuelo1.GetVelocidad();
                     double velocidad2 = vuelo2.GetVelocidad();
 
-                    // Evitar divisiones entre cero
                     if (longitud1 == 0 || longitud2 == 0 || velocidad1 <= 0 || velocidad2 <= 0)
                         continue;
 
@@ -154,11 +148,10 @@ namespace FlightLib
 
                     double tDistMin;
                     if (abajo == 0)
-                        tDistMin = 0;   // Misma velocidad vectorial: la distancia es constante
+                        tDistMin = 0;
                     else
                         tDistMin = -arriba / abajo;
 
-                    // Limitar t al intervalo en el que ambos vuelos están en el aire
                     double tMax = Math.Min(longitud1 / velocidad1, longitud2 / velocidad2);
                     if (tDistMin < 0) tDistMin = 0;
                     if (tDistMin > tMax) tDistMin = tMax;
@@ -168,9 +161,9 @@ namespace FlightLib
                     double distY = (yI1 + velocidadY1 * tDistMin) - (yI2 + velocidadY2 * tDistMin);
                     double distMin = Math.Sqrt(distX * distX + distY * distY);
 
+                    // Hay conflicto si los círculos se tocan: la distancia entre centros es como mucho 2 veces el radio de seguridad
                     if (distMin <= distanciaSeguridad * 2)
                     {
-                        // Añadir sin duplicados
                         if (!EstaEnLista(vuelosEnConflicto, vuelo1))
                             vuelosEnConflicto.AddFlightPlan(vuelo1);
                         if (!EstaEnLista(vuelosEnConflicto, vuelo2))
@@ -185,8 +178,8 @@ namespace FlightLib
                 return vuelosEnConflicto;
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        // Método auxiliar: comprueba si un vuelo ya está en la lista
+        // Método auxiliar: comprueba si un vuelo(parametro2) ya está en la lista(parametro1)
+        // Devuelve true si el vuelo (el mismo objeto) ya está en la lista, o false si no está.
         private bool EstaEnLista(FlightPlanList lista, FlightPlan vuelo)
         {
             for (int k = 0; k < lista.GetNumber(); k++)
@@ -197,7 +190,9 @@ namespace FlightLib
             return false;
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Comprueba si, en este momento, hay dos vuelos cuyos círculos de seguridad se tocan (con las posiciones actuales).
+        // A diferencia de EncontrarConflicto, no predice el futuro.
+        // Devuelve true si hay al menos una pareja en conflicto, o false si no hay ninguna.
         public bool HayConflictoTiempoReal()
         {
             for (int i = 0; i < number; i++)
@@ -206,23 +201,24 @@ namespace FlightLib
                 {
                     FlightPlan vuelo1 = vector[i];
                     FlightPlan vuelo2 = vector[j];
-
-                    // Distancia entre los centros de los aviones
                     double dist = vuelo1.Distance(vuelo2);
 
+                    // Los círculos se tocan si la distancia entre centros es como mucho 2 veces el radio de seguridad
                     if (dist <= distanciaSeguridad * 2)
                         return true;
                 }
             }
             return false;
         }
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Intenta evitar los conflictos duplicando la velocidad de algunos vuelos.
         public void ResolverConflictos()
         {
+            // Estrategia simple: se duplica la velocidad original de uno de cada dos vuelos de la lista de conflictos.
             if (vector != null)
             {
-                for (int i = 0; i < number; i=i+2)
+                // i = i + 2: solo se modifica un vuelo de cada dos
+                // Se usa la velocidad ORIGINAL (no la actual), así que sustituye cualquier cambio de velocidad hecho antes
+                for (int i = 0; i < number; i = i + 2)
                 {
                     FlightPlan vuelo = vector[i];
                     double velocidadOriginal = vuelo.GetVelocidadOriginal();
@@ -232,26 +228,22 @@ namespace FlightLib
             }
         }
 
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public void GuardarEnArchivo(string ruta)
-        // FUNCIÓN: guardar la lista de vuelos en un fichero de texto para poder continuar la simulación para más tarde
+
+        // FUNCIÓN: guardar la lista de vuelos en la ruta indicada y en un fichero de texto para poder continuar la simulación para más tarde
         // ESTRUCTURA DEL FICHERO:
         //   - DISTANCIA distanciaSeguridad
         //   - CICLO tiempoCiclo
         //   - linea de vuelo: id company posicionX posicionY destinoX destinoY velocidad
         // Se guarda la posición ACTUAL, así al cargarlo la simulación sigue desde donde se quedó
-
+        public void GuardarEnArchivo(string ruta)
         {
-            //abrimos el fichero para escribir en él
             StreamWriter w = new StreamWriter(ruta);
-            // primeras líneas: los parámetros de seguridad, cada uno con su título
+            // InvariantCulture: los decimales se escriben siempre con punto, sin depender de la configuración regional
             w.WriteLine("DISTANCIA " + distanciaSeguridad.ToString(CultureInfo.InvariantCulture));
             w.WriteLine("CICLO " + tiempoCiclo.ToString(CultureInfo.InvariantCulture));
 
-            // escribimos cada vuelo en una línea, con los datos separados por espacios
             for (int i = 0; i < number; i++)
             {
-                // llamamos "vuelo" a la posición de vector[i] para no tener que escribir vector[i] cada vez
                 FlightPlan vuelo = vector[i];
                 Position posicionActual = vuelo.GetCurrentPosition();
                 Position posicionFinal = vuelo.GetFinalPosition();
@@ -266,14 +258,11 @@ namespace FlightLib
 
                 w.WriteLine(linea);
             }
-
-            // siempre cerrar el fichero, si no lo escrito no puede guardarse correctamente
             w.Close();
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public FlightPlanList CargaDeFichero(string ruta)
-        // FUNCIÓN: leer un fichero de planes de vuelo y devolver un objeto FlightPlanList con todos los vuelos cargados
+      
+        // FUNCIÓN: leer un fichero de planes de vuelo con la ruta indicada y devolver un objeto FlightPlanList con todos los vuelos cargados
         // Sirve para los 2 tipos de ficheros:
         //   - un fichero de planes de vuelo normal (entrada desde windows)
         //   - una simulación guardada (con DISTANCIA y CICLO al principio)
@@ -281,59 +270,48 @@ namespace FlightLib
         //   - DISTANCIA distanciaSeguridad (opcional, solo en simulaciones guardadas)
         //   - CICLO tiempoCiclo (opcional, solo en simulaciones guardadas)
         //   - linea de vuelo: id, company, posicionX, posicionY, destinoX, destinoY, velocidad
+        public FlightPlanList CargaDeFichero(string ruta)
         {
-            // lista donde se guardarán los vuelos leídos del fichero
             FlightPlanList listaFichero = new FlightPlanList();
-            // el StreamReader se declara fuera del try (vacío) para poder cerrarlo en los catch
             StreamReader r = null;
 
             try
             {
-                // abrimos el fichero para lectura, si no existe o hay algún error se lanza una excepción y se va al catch
                 r = new StreamReader(ruta);
-                // lee primera línea
                 string linea = r.ReadLine();
 
-                // mientras queden líneas
                 while (linea != null)
                 {
-                    // partimos la línea por los espacios: cada trozo es un dato
                     string[] trozos = linea.Split(' ');
 
-                    if(trozos[0] == "DISTANCIA")
+                    if (trozos[0] == "DISTANCIA")
                     {
-                        // la línea de distancia tiene que tener 2 datos: DISTANCIA y el número
                         if (trozos.Length != 2)
                         {
                             r.Close();
                             return null;
                         }
-                        // línea de la distancia de seguridad (solo en simulaciones guardadas)
-                        listaFichero.SetDistanciaSeguridad(Convert.ToDouble(trozos[1], CultureInfo.InvariantCulture));
+                        listaFichero.SetDistanciaSeguridad(Convert.ToSingle(trozos[1], CultureInfo.InvariantCulture));
                     }
 
                     else if (trozos[0] == "CICLO")
                     {
-                        // la línea de ciclo tiene que tener 2 datos: CICLO y el número
                         if (trozos.Length != 2)
                         {
                             r.Close();
                             return null;
                         }
-                        // línea del tiempo de ciclo (solo en simulaciones guardadas)
                         listaFichero.SetTiempoCiclo(Convert.ToDouble(trozos[1], CultureInfo.InvariantCulture));
                     }
 
                     else
                     {
-                        // una línea de vuelo tiene que tener 7 datos
                         if (trozos.Length != 7)
                         {
                             r.Close();
                             return null;
                         }
 
-                        // línea de vuelo normal
                         string id = trozos[0];
                         string company = trozos[1];
                         double posicionX = Convert.ToDouble(trozos[2], CultureInfo.InvariantCulture);
@@ -341,11 +319,11 @@ namespace FlightLib
                         double destinoX = Convert.ToDouble(trozos[4], CultureInfo.InvariantCulture);
                         double destinoY = Convert.ToDouble(trozos[5], CultureInfo.InvariantCulture);
                         double velocidad = Convert.ToDouble(trozos[6], CultureInfo.InvariantCulture);
-                        // creamos un nuevo FlightPlan con los datos leídos del fichero y lo añadimos a la lista de vuelos
+
                         FlightPlan vuelo = new FlightPlan(id, company, posicionX, posicionY, destinoX, destinoY, velocidad);
                         int resultado = listaFichero.AddFlightPlan(vuelo);
 
-                        // si el resultado es -1, significa que la lista está llena y no se pueden añadir más vuelos
+                        // -1 significa que la lista está llena
                         if (resultado == -1)
                         {
                             r.Close();
@@ -353,17 +331,14 @@ namespace FlightLib
                         }
                     }
 
-                    // leemos la siguiente línea
                     linea = r.ReadLine();
                 }
 
-                // cerramos el fichero y devolvemos la lista llena
                 r.Close();
                 return listaFichero;
             }
             catch (FormatException)
             {
-                // algún número del fichero tiene letras en vez de números
                 r.Close();
                 return null;
             }
@@ -401,41 +376,21 @@ namespace FlightLib
                 return null;
             }
         }
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Escribe en la consola los datos de todos los vuelos de la lista (se usa para pruebas).
         public void EscribeConsola()
         {
             int i = 0;
             while (i < number)
             {
                 vector[i].EscribeConsola();
-                // recorremos todos los FlightPlans de la lista y los escribimos en consola
                 i++;
             }
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public FlightPlanList Clonar()
-        {
-            // Crea una copia del objeto FlightPlanList actual (distancia de seguridad, tiempo de ciclo y cada vuelo clonado individualmente).
-            FlightPlanList copia = new FlightPlanList();
-            copia.SetDistanciaSeguridad(this.distanciaSeguridad);
-            copia.SetTiempoCiclo(this.tiempoCiclo);
-
-            for (int i = 0; i < this.number; i++)
-            {
-                FlightPlan vueloOriginal = this.vector[i];
-                FlightPlan vueloClonado = vueloOriginal.Clonar();
-                copia.AddFlightPlan(vueloClonado);
-            }
-            return copia;
-        }
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         /// Pila que guarda las copias de estados anteriores para poder deshacer pasos
         Stack<FlightPlan[]> historialEstadosVuelo = new Stack<FlightPlan[]>();
-
-        // Devuelve 'true' si hay al menos un estado guardado en la pila al que poder retroceder, o 'false' si la pila está vacía (sirve para activar o desactivar el botón Deshacer).
+        // Indica si hay algún estado anterior al que volver (sirve para activar o desactivar el botón Deshacer).
+        // Devuelve true si hay al menos un estado guardado en la pila, o false si está vacía.
         public bool PuedeDeshacer()
         {
             return historialEstadosVuelo.Count > 0;
@@ -444,31 +399,29 @@ namespace FlightLib
         // Crea una copia independiente del array actual de vuelos (vector) y la guarda en la pila antes de que los aviones avancen al siguiente paso.
         public void GuardarEstadoAnterior()
         {
-            // Creamos un nuevo array vacío de 100 posiciones para no sobrescribir el original
             FlightPlan[] copiaVector = new FlightPlan[100];
             for (int i = 0; i < number; i++)
             {
                 copiaVector[i] = vector[i].Clonar();
             }
-            // Metemos la copia completa en la cima de la pila
             historialEstadosVuelo.Push(copiaVector);
         }
 
         // Retrocede un paso extrayendo de la pila el último array de vuelos guardado y reemplazando el array actual (vector) por esa copia anterior.
         public void DeshacerPaso()
         {
-            // Comprobamos que la pila no esté vacía antes de extraer para evitar errores
             if (historialEstadosVuelo.Count > 0)
             {
                 vector = historialEstadosVuelo.Pop();
             }
         }
 
+        // Vaciar la pila de estados anteriores 
+        // Después ya no se puede deshacer ningún paso
         public void LimpiarHistorial()
         {
-            // Vaciar la pila de estados anteriores 
             historialEstadosVuelo.Clear();
-            
+
         }
     }
 }

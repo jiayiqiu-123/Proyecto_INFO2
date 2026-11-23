@@ -13,19 +13,16 @@ namespace SimuladorDeWindowsForm
 {
     public partial class FormCambiarVelocidad : Form
     {
-        // Vuelos que se mostrarán en la tabla
         FlightPlanList ListaVuelos = new FlightPlanList();
-        // Indica si el usuario ha aceptado algún cambio
         public bool CambiosAceptados = false;
-        // Velocidades finales aceptadas por el usuario
-        public double Velocidad1Nueva;
-        public double Velocidad2Nueva;
 
+        // Recibe la lista de vuelos cuyas velocidades se pueden cambiar.
         public void SetListaVuelos(FlightPlanList listaVuelos)
         {
             this.ListaVuelos = listaVuelos;
         }
 
+        // Indica si el usuario ha aceptado algún cambio de velocidad.
         public bool GetCambiosAceptados()
         {
             return CambiosAceptados;
@@ -35,29 +32,35 @@ namespace SimuladorDeWindowsForm
         {
             InitializeComponent();
         }
+
+        // Cierra el formulario sin cambiar ninguna velocidad.
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // Al abrir, rellena la tabla con el identificador y la velocidad actual de cada vuelo.
         private void FormCambiarVelocidad_Load(object sender, EventArgs e)
         {
-            for(int i = 0; i < ListaVuelos.GetNumber();i++)
+            for (int i = 0; i < ListaVuelos.GetNumber(); i++)
             {
                 tablaVuelos.Rows.Add(ListaVuelos.GetFlightPlan(i).GetId(), ListaVuelos.GetFlightPlan(i).GetVelocidad(), "");
 
             }
         }
 
+        // Valida las velocidades introducidas y las aplica a cada vuelo; cierra el formulario si todo es correcto.
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 double v;
                 for (int i = 0; i < ListaVuelos.GetNumber(); i++)
                 {
+                    // La tercera columna es la de la nueva velocidad
                     string texto = Convert.ToString(tablaVuelos.Rows[i].Cells[2].Value);
 
+                    // Una celda vacía significa que ese vuelo mantiene su velocidad
                     if (texto != "")
                     {
                         int valor = Convert.ToInt32(texto);

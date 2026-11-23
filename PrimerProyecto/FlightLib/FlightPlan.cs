@@ -8,29 +8,22 @@ using System.Drawing;
 namespace FlightLib
 {
     public class FlightPlan
-    // para definir una clase, SIEMPRE se pone en public para poder EDITARLA DESDE FUERA (quien quiera modificar nuestro código)
 
     {
-        // ATRIBUTOS (variables) - estas siempre son privadas, sin poner delante nada para no poder ser modificadas
 
-        string id; // identificador
-        string company; // compañia
-        Position initialPosition; // posición inicial
-        Position currentPosition; // posicion actual
-        Position finalPosition; // posicion final
-        double velocidad;  // velocidad del avión
-        double velocidadoriginal;  // velocidad original del avión
-        Color color; // color del avión
+        string id;
+        string company;
+        Position initialPosition;
+        Position currentPosition;
+        Position finalPosition;
+        double velocidad;
+        double velocidadoriginal;
+        Color color;
         static readonly Random generadorAleatorio = new Random();
 
-        // CONSTRUCTORES (através de parámetros pone atributos)
-        // el constructor lo que hace es "montar" el objeto, es decir, crear el objeto con los atributos que le pasamos para que esten ordenados como queramos
-        // el programa siempre sabrá a que constructor ir por el numero de atributos que tenga 
-
+        // CONSTRUCTORES 
         public FlightPlan(string id, string company, double cpx, double cpy, double fpx, double fpy, double velocidad)
         {
-            // atributos de la clase FlightPlan, delante simplemente le ponemos el tipo (ejemplo:"string")
-            // delante de los atributos no se pone nada, LOS ATRIBUTOS YA SON PRIVADOS
 
             this.id = id;
             this.company = company;
@@ -42,10 +35,7 @@ namespace FlightLib
             this.color = Color.Empty;
         }
 
-        // METODOS (funciones)
-        // son los métodos que van a trabajar sobre los atributos de la clase FlightPlan
-
-        // GETTERS --------------------------------------------------------------------------------------------------------------------------------------------------------
+        // GETTERS 
         public string GetId()
         { return id; }
 
@@ -71,7 +61,7 @@ namespace FlightLib
         { return color; }
 
 
-        // SETTERS --------------------------------------------------------------------------------------------------------------------------------------------------------
+        // SETTERS 
 
         public void SetId(string id)
         { this.id = id; }
@@ -86,8 +76,6 @@ namespace FlightLib
         { this.finalPosition = finalPosition; }
 
         public void SetVelocidad(double velocidad)
-        // Setter del atributo velocidad
-        // es de tipo void porque no devuelve nada
         { this.velocidad = velocidad; }
 
         public void SetRandomColor()
@@ -104,84 +92,80 @@ namespace FlightLib
 
         }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        // METODOS (funciones)
 
+
+        // Mueve el vuelo en línea recta hacia su destino durante el tiempo indicado como parámetro.
+        // Si llega o se pasa del destino, se queda exactamente en el destino.
         public void Mover(double tiempo)
         {
-            // Distancia que recorre el avión durante el tiempo indicado
             double distancia = tiempo * velocidad;
 
-            // Vector desde la posición actual hasta el destino
             double dx = finalPosition.GetX() - currentPosition.GetX();
             double dy = finalPosition.GetY() - currentPosition.GetY();
 
-            // Longitud de la trayectoria que falta
             double longitud = Math.Sqrt(dx * dx + dy * dy);
-
+¡
             if (longitud == 0)
                 return;
 
-            // Dirección de la trayectoria
             double direccionX = dx / longitud;
             double direccionY = dy / longitud;
 
-            // Nueva posición según la ecuación del movimiento
             double x = currentPosition.GetX() + distancia * direccionX;
             double y = currentPosition.GetY() + distancia * direccionY;
 
             Position nuevaPosicion = new Position(x, y);
 
-            // Si llega o se pasa del destino, lo dejamos exactamente en el destino
             if (currentPosition.Distancia(nuevaPosicion) >= longitud)
                 nuevaPosicion = finalPosition;
             currentPosition = nuevaPosicion;
         }
 
-        // !!HACER UN METODO PARA QUE DIGA SI UN VUELO LLEGA A SU DESTINO O NO (COMPARANDO POSICIONES)
+        // Comprueba si el vuelo ha llegado a su destino.
+        // Devuelve true si la posición actual coincide con el destino, o false si todavía está en vuelo.
         public bool HasArrived()
         {
             bool resultado = false;
 
             if (currentPosition.Distancia(finalPosition) == 0)
-                // (currentPosition == finalPosition) --> yo lo tenía así, quiero preguntar si valdría igual
                 resultado = true;
             return resultado;
         }
 
+        // Devuelve el vuelo a su posición inicial. No cambia la velocidad. No devuelve nada.
         public void Restart()
         { currentPosition = initialPosition; }
 
+        // Pone de nuevo la velocidad original del vuelo (deshace cualquier cambio de velocidad). No devuelve nada.
         public void RestaurarVelocidadesOriginales()
         {
             this.SetVelocidad(this.GetVelocidadOriginal());
         }
 
+        // Calcula la distancia entre la posición actual de este vuelo y la del vuelo indicado como parámetro.
+        // Devuelve la distancia (double).
         public double Distance(FlightPlan plan)
         {
             double twoPlansDistance = this.currentPosition.Distancia(plan.currentPosition);
-            // este método lo que hace es coger la currentposition y hacer la distancia respecto a otro plan de vuelo "plan" que será un parámetro que le daremos
             return twoPlansDistance;
         }
 
 
-        public void EscribeConsola()
         // escribe en consola los datos del plan de vuelo
+        public void EscribeConsola()
         {
             Console.WriteLine("******************************");
             Console.WriteLine("Datos del vuelo: ");
-            Console.WriteLine("Identificador: {0}", id);
-            // !!buscar como escribir datos reales con solo 2 decimales (F2, float de 2 decimales)
             Console.WriteLine("Velocidad: {0:F2}", velocidad);
             Console.WriteLine("Posición actual: ({0:F2},{1:F2})", currentPosition.GetX(), currentPosition.GetY());
             if (this.HasArrived())
-                // se encarga de avisar si hemos llegado a nuestro destino
                 Console.WriteLine("Hemos llegado a nuestro destino");
             Console.WriteLine("******************************");
         }
-
+        // Crea una copia del objeto FlightPlan actual
         public FlightPlan Clonar()
         {
-            // Crea una copia del objeto FlightPlan actual
             FlightPlan copia = new FlightPlan
             (
                 this.id,

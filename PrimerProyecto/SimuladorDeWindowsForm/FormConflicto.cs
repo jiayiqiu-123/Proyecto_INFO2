@@ -20,22 +20,20 @@ namespace SimuladorDeWindowsForm
             InitializeComponent();
         }
 
+        // Recibe la lista con los vuelos que entrarán en conflicto.
         public void SetListaConflictos(FlightPlanList listaConflictos)
         {
             this.ListaConflictos = listaConflictos;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        // Resuelve los conflictos detectados y cierra el formulario.
         private void btnResolver_Click(object sender, EventArgs e)
         {
             ListaConflictos.ResolverConflictos();
             this.Close();
         }
 
+        // Cierra el formulario sin resolver los conflictos.
         private void btnSinResolver_Click(object sender, EventArgs e)
         {
             this.Close();
